@@ -1,0 +1,2 @@
+module Kaze::Commands
+end

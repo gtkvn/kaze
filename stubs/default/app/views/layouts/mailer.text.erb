@@ -1,0 +1,11 @@
+<!-- Header -->
+<%= ENV.fetch("APP_NAME", "Rails") %>: <%= root_url %>
+
+<!-- Body -->
+<%= yield %>
+
+<!-- Subcopy -->
+<%= yield(:subcopy) %>
+
+<!-- Footer -->
+© <%= Time.new.year %> <%= ENV.fetch("APP_NAME", "Rails") %>. All rights reserved.

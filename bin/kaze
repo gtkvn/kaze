@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require "kaze"
+
+begin
+  Kaze::Commands::InstallCommand.start(ARGV)
+rescue => e
+  puts "  \e[31mERROR (#{e.class}): #{e.message}\e[0m"
+  puts e.backtrace if ENV["VERBOSE"]
+  exit 1
+end
