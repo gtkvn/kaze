@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title><%= content_for(:title) || "Rails" %></title>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <%= hotwire_livereload_tags if Rails.env.development? %>
+    <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+  </head>
+  <body class="font-sans text-gray-900 antialiased">
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+      <div>
+        <a href="/">
+          <%= render(ApplicationLogoComponent.new({ class: "w-20 h-20 fill-current text-gray-500" })) %>
+        </a>
+      </div>
+
+      <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

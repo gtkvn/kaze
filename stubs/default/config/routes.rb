@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   post "logout", to: "auth/authenticated_session#destroy", as: :logout
 
-  get "dashboard", to: "dashboard#show", as: :dashboard
+  get "dashboard", to: "dashboard#index", as: :dashboard
 
   get "profile", to: "profile#edit", as: :profile_edit
   patch "profile", to: "profile#update", as: :profile_update

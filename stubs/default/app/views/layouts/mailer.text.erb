@@ -5,7 +5,9 @@
 <%= yield %>
 
 <!-- Subcopy -->
-<%= yield(:subcopy) %>
+<% if content_for?(:subcopy) %>
+<%= yield :subcopy %>
+<% end %>
 
 <!-- Footer -->
 © <%= Time.new.year %> <%= ENV.fetch("APP_NAME", "Rails") %>. All rights reserved.

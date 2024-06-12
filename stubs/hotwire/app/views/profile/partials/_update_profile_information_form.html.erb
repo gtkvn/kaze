@@ -1,0 +1,49 @@
+<turbo-frame id="update_profile_information_form">
+    <section>
+        <header>
+            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                Profile Information
+            </h2>
+
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                Update your account's profile information and email address.
+            </p>
+        </header>
+
+        <%= form_with model: @update_profile_information_form, url: profile_update_path, method: "patch", class: "mt-6 space-y-6" do %>
+            <!-- Name -->
+            <div>
+                <%= render(InputLabelComponent.new({ for: "name", value: "Name" })) %>
+
+                <%= render(TextInputComponent.new({ id: "name", class: "block mt-1 w-full", type: "text", name: "name", value: @update_profile_information_form.name, required: true, autofocus: true, autocomplete: "name" })) %>
+
+                <%= render(InputErrorComponent.new({ class: "mt-2", message: @update_profile_information_form.error_messages[:name] })) %>
+            </div>
+
+            <!-- Email Address -->
+            <div class="mt-4">
+                <%= render(InputLabelComponent.new({ for: "email", value: "Email" })) %>
+
+                <%= render(TextInputComponent.new({ id: "email", class: "block mt-1 w-full", type: "email", name: "email", value: @update_profile_information_form.email, required: true, autocomplete: "username" })) %>
+
+                <%= render(InputErrorComponent.new({ class: "mt-2", message: @update_profile_information_form.error_messages[:email] })) %>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <%= render(PrimaryButtonComponent.new) do %>
+                    Save
+                <% end %>
+
+                <% if flash[:status] == "profile-updated" %>
+                    <p
+                        x-data="{ show: true }"
+                        x-show="show"
+                        x-transition
+                        x-init="setTimeout(() => show = false, 2000)"
+                        class="text-sm text-gray-600 dark:text-gray-400"
+                    >Saved.</p>
+                <% end %>
+            </div>
+        <% end %>
+    </section>
+</turbo-frame>

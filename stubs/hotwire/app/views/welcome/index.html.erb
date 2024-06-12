@@ -1,42 +1,53 @@
-<script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3';
-import { dashboard_path, login_path, register_path } from '@/routes';
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-visit-control" content="reload">
 
-defineProps<{
-    railsVersion: string;
-    rubyVersion: string;
-}>();
-</script>
+    <title><%= content_for(:title) || "Rails" %></title>
 
-<template>
-    <Head title="Welcome" />
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <%= hotwire_livereload_tags if Rails.env.development? %>
+    <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+  </head>
+
+  <body class="font-sans antialiased">
     <div
         class="flex flex-col items-center justify-center bg-[#F0E7E9] bg-center bg-cover text-[#261B23] not-italic font-normal leading-tight min-h-screen text-center"
         style="background-image: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEwMjQiIHZpZXdCb3g9IjAgMCAxNDQwIDEwMjQiIHdpZHRoPSIxNDQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im0xNDQwIDUxMC4wMDA2NDh2LTUxMC4wMDA2NDhoLTE0NDB2Mzg0LjAwMDY0OGM0MTcuMzExOTM5IDEzMS4xNDIxNzkgODkxIDE3MS41MTMgMTQ0MCAxMjZ6IiBmaWxsPSIjZmZmIi8+PC9zdmc+);font-family: Sans-Serif;font-size: calc(0.9em + 0.5vw);"
     >
         <header class="absolute top-0 right-0 grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
             <div class="-mx-3 flex flex-1 justify-end">
-                <Link
-                    :href="dashboard_path()"
-                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                    v-if="$page.props.auth.user"
-                >
-                    Dashboard
-                </Link>
-                <template v-else>
-                    <Link
-                        :href="login_path()"
+                <% if Current.user %>
+                    <a
+                        href="<%= dashboard_url %>"
+                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                        v-if="$page.props.auth.user"
+                    >
+                        Dashboard
+                    </a>
+                <% else %>
+                    <a
+                        href="<%= login_url %>"
                         class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                     >
                         Log in
-                    </Link>
-                    <Link
-                        :href="register_path()"
+                    </a>
+                    <a
+                        href="<%= register_url %>"
                         class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                     >
                         Register
-                    </Link>
-                </template>
+                    </a>
+                <% end %>
             </div>
         </header>
         <nav style="font-size: 0;height: 20vw;line-height: 0;max-height: 280px;max-width: 280px;min-height: 86px;min-width: 86px;width: 20vw;">
@@ -49,8 +60,9 @@ defineProps<{
         </nav>
 
         <ul class="bottom-0 left-0 list-none mx-8 mt-0 mb-8 right-0 absolute">
-            <li><strong>Rails version:</strong> {{ railsVersion }}</li>
-            <li><strong>Ruby version:</strong> {{ rubyVersion }}</li>
+            <li><strong>Rails version:</strong> <%= Rails.version %></li>
+            <li><strong>Ruby version:</strong> <%= RUBY_DESCRIPTION %></li>
         </ul>
     </div>
-</template>
+  </body>
+</html>

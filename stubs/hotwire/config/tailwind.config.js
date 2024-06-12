@@ -6,8 +6,9 @@ export default {
   content: [
     './public/*.html',
     './app/helpers/**/*.rb',
+    './app/components/**/*',
     './app/views/**/*',
-    './app/javascript/**/*.tsx',
+    './app/javascript/**/*.js',
   ],
 
   theme: {

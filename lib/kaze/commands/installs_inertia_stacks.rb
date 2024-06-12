@@ -1,15 +1,16 @@
-module Kaze::Commands::InstallInertiaStacks
+module Kaze::Commands::InstallsInertiaStacks
   private
 
   def install_inertia_react_stack
-    # Install Inertia...
-    return unless require_gems([ "propshaft", "tailwindcss-rails", "inertia_rails", "vite_rails", "dotenv", "bcrypt", "js-routes" ])
+    # Gems...
+    return unless remove_gems([ "sprockets-rails" ])
+    return unless install_gems([ "propshaft", "tailwindcss-rails", "inertia_rails", "vite_rails", "dotenv", "bcrypt", "js-routes" ])
 
     # NPM Packages...
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-react-ts/package.json", "#{Dir.pwd}/package.json")
 
     # Controllers...
-    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/app/controllers", "#{Dir.pwd}/app/controllers")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/app/controllers", "#{Dir.pwd}/app/controllers")
 
     # Models...
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/app/models", "#{Dir.pwd}/app/models")
@@ -22,6 +23,10 @@ module Kaze::Commands::InstallInertiaStacks
     ensure_directory_exists("#{Dir.pwd}/app/validators")
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/app/validators", "#{Dir.pwd}/app/validators")
 
+    # Mailers...
+    ensure_directory_exists("#{Dir.pwd}/app/mailers")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/app/mailers", "#{Dir.pwd}/app/mailers")
+
     # Views...
     ensure_directory_exists("#{Dir.pwd}/app/views/layouts")
     ensure_directory_exists("#{Dir.pwd}/app/views/user_mailer")
@@ -29,10 +34,6 @@ module Kaze::Commands::InstallInertiaStacks
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/views/layouts/mailer.html.erb", "#{Dir.pwd}/app/views/layouts/mailer.html.erb")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/views/layouts/mailer.text.erb", "#{Dir.pwd}/app/views/layouts/mailer.text.erb")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/views/user_mailer/reset_password.html.erb", "#{Dir.pwd}/app/views/user_mailer/reset_password.html.erb")
-
-    # Mailers...
-    ensure_directory_exists("#{Dir.pwd}/app/mailers")
-    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/app/mailers", "#{Dir.pwd}/app/mailers")
 
     # Components + Pages...
     ensure_directory_exists("#{Dir.pwd}/app/javascript")
@@ -50,12 +51,12 @@ module Kaze::Commands::InstallInertiaStacks
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/assets/stylesheets/application.css", "#{Dir.pwd}/app/assets/stylesheets/application.css")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/assets/stylesheets/application.tailwind.css", "#{Dir.pwd}/app/assets/stylesheets/application.tailwind.css")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-react-ts/config/tailwind.config.js", "#{Dir.pwd}/config/tailwind.config.js")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/config/vite.json", "#{Dir.pwd}/config/vite.json")
+    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/config/vite.json", "#{Dir.pwd}/config/vite.json")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-react-ts/tsconfig.json", "#{Dir.pwd}/tsconfig.json")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-react-ts/vite.config.ts", "#{Dir.pwd}/vite.config.ts")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/bin/dev", "#{Dir.pwd}/bin/dev")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/bin/vite", "#{Dir.pwd}/bin/vite")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
+    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/bin/vite", "#{Dir.pwd}/bin/vite")
+    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
     run_command("rails generate js_routes:middleware")
 
     say ""
@@ -76,14 +77,15 @@ module Kaze::Commands::InstallInertiaStacks
   end
 
   def install_inertia_vue_stack
-    # Install Inertia...
-    return unless require_gems([ "propshaft", "tailwindcss-rails", "inertia_rails", "vite_rails", "dotenv", "bcrypt", "js-routes" ])
+    # Gems...
+    return unless remove_gems([ "sprockets-rails" ])
+    return unless install_gems([ "propshaft", "tailwindcss-rails", "inertia_rails", "vite_rails", "dotenv", "bcrypt", "js-routes" ])
 
     # NPM Packages...
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-vue-ts/package.json", "#{Dir.pwd}/package.json")
 
     # Controllers...
-    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/app/controllers", "#{Dir.pwd}/app/controllers")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/app/controllers", "#{Dir.pwd}/app/controllers")
 
     # Models...
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/app/models", "#{Dir.pwd}/app/models")
@@ -124,12 +126,12 @@ module Kaze::Commands::InstallInertiaStacks
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/assets/stylesheets/application.css", "#{Dir.pwd}/app/assets/stylesheets/application.css")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/assets/stylesheets/application.tailwind.css", "#{Dir.pwd}/app/assets/stylesheets/application.tailwind.css")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-vue-ts/config/tailwind.config.js", "#{Dir.pwd}/config/tailwind.config.js")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/config/vite.json", "#{Dir.pwd}/config/vite.json")
+    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/config/vite.json", "#{Dir.pwd}/config/vite.json")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-vue-ts/tsconfig.json", "#{Dir.pwd}/tsconfig.json")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-vue-ts/vite.config.ts", "#{Dir.pwd}/vite.config.ts")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/bin/dev", "#{Dir.pwd}/bin/dev")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/bin/vite", "#{Dir.pwd}/bin/vite")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
+    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/bin/vite", "#{Dir.pwd}/bin/vite")
+    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
     run_command("rails generate js_routes:middleware")
 
     say ""
