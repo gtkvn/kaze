@@ -18,11 +18,30 @@ gem install kaze
 
 Once Kaze is installed, you may scaffold your application using one of the Kaze "stacks" discussed in the documentation below.
 
+## Kaze & Hotwire
+
+The default Kaze "stack" is the Hotwire stack. Hotwire is a powerful way to building dynamic, reactive, front-end UIs primarily using Ruby and ERB templates without using much JavaScript by sending HTML instead of JSON over the wire.
+
+The Hotwire stack may be installed by invoking the `install` command with no other additional arguments inside your app directory.
+
+```
+kaze install
+```
+
+After Kaze's scaffolding is installed, you may start your application:
+
+```
+bin/setup
+bin/dev
+```
+
+Next, you may navigate to your application's `/login` or `/register` URLs in your web browser.
+
 ## Kaze & React / Vue
 
 Kaze offers React and Vue scaffolding via an Inertia frontend implementation. Inertia allows you to build modern, single-page React and Vue applications using classic server-side routing and controllers.
 
-Inertia lets you enjoy the frontend power of React and Vue combined with the incredible backend productivity of Rails and lightning-fast Vite compilation. To use an Inertia stack, specify vue or react as your desired stack when executing the install command inside your app directory:
+Inertia lets you enjoy the frontend power of React and Vue combined with the incredible backend productivity of Rails and lightning-fast Vite compilation. To use an Inertia stack, specify vue or react as your desired stack when executing the `install` command inside your app directory:
 
 ```
 kaze install react
