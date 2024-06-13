@@ -3,9 +3,9 @@ module Kaze::Commands::InstallsHotwireStack
 
   def install_hotwire_stack
     # Gems...
-    return unless remove_gems([ "sprockets-rails", "stimulus-rails" ])
-    return unless install_gems([ "propshaft", "view_component", "tailwindcss-rails", "turbo-rails", "dotenv", "bcrypt" ])
-    return unless install_gems([ "hotwire-livereload" ], "development")
+    return unless remove_gems([ 'sprockets-rails', 'stimulus-rails' ])
+    return unless install_gems([ 'propshaft', 'view_component', 'tailwindcss-rails', 'turbo-rails', 'dotenv', 'bcrypt' ])
+    return unless install_gems([ 'hotwire-livereload' ], 'development')
 
     # Controllers...
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/hotwire/app/controllers", "#{Dir.pwd}/app/controllers")
@@ -54,9 +54,9 @@ module Kaze::Commands::InstallsHotwireStack
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/hotwire/config/tailwind.config.js", "#{Dir.pwd}/config/tailwind.config.js")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/bin/dev", "#{Dir.pwd}/bin/dev")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/hotwire/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
-    run_command("rails tailwindcss:build")
+    run_command('rails tailwindcss:build')
 
-    say ""
-    say "Kaze scaffolding installed successfully.", :green
+    say ''
+    say 'Kaze scaffolding installed successfully.', :green
   end
 end

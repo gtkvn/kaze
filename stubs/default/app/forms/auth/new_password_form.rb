@@ -10,7 +10,7 @@ class Auth::NewPasswordForm < ApplicationForm
     user = User.find_by_token_for(:password_reset, token)
 
     if user.nil?
-      errors.add(:password, message: "This password reset token is invalid.")
+      errors.add(:password, message: 'This password reset token is invalid.')
       return false
     end
 

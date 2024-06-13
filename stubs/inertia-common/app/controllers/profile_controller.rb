@@ -1,6 +1,6 @@
 class ProfileController < ApplicationController
   def edit
-    render inertia: "Profile/Edit", props: {
+    render inertia: 'Profile/Edit', props: {
       status: session[:status]
     }
   end
@@ -26,6 +26,6 @@ class ProfileController < ApplicationController
 
     user.delete
 
-    redirect_to "/"
+    redirect_to '/'
   end
 end

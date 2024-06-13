@@ -11,7 +11,7 @@ class Auth::LoginForm < ApplicationForm
 
     return user if user.present?
 
-    errors.add(:email, message: "These credentials do not match our records.")
+    errors.add(:email, message: 'These credentials do not match our records.')
 
     nil
   end

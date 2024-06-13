@@ -1,12 +1,12 @@
 class Auth::AuthenticatedSessionController < ApplicationController
   skip_authentication only: %i[new create]
 
-  layout "guest"
+  layout 'guest'
 
   def new
     @form = Auth::LoginForm.new
 
-    render "auth/login"
+    render 'auth/login'
   end
 
   def create
@@ -14,7 +14,7 @@ class Auth::AuthenticatedSessionController < ApplicationController
 
     user = @form.authenticate
 
-    return render "auth/login", status: :unprocessable_entity if user.nil?
+    return render 'auth/login', status: :unprocessable_entity if user.nil?
 
     login user
 

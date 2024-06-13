@@ -1,27 +1,27 @@
-require "bundler"
-require "fileutils"
-require "open3"
-require "thor"
+require 'bundler'
+require 'fileutils'
+require 'open3'
+require 'thor'
 
 class Kaze::Commands::InstallCommand < Thor
   include Kaze::Commands::InstallsHotwireStack
   include Kaze::Commands::InstallsInertiaStacks
 
-  desc "install [STACK]", "Install the Kaze controllers and resources. Supported stacks: hotwire, react, vue."
-  def install(stack = "hotwire")
-    if stack == "hotwire"
+  desc 'install [STACK]', 'Install the Kaze controllers and resources. Supported stacks: hotwire, react, vue.'
+  def install(stack = 'hotwire')
+    if stack == 'hotwire'
       return install_hotwire_stack
     end
 
-    if stack == "react"
+    if stack == 'react'
       return install_inertia_react_stack
     end
 
-    if stack == "vue"
+    if stack == 'vue'
       return install_inertia_vue_stack
     end
 
-    say "Invalid stack. Supported stacks are [hotwire], [react], [vue].", :red
+    say 'Invalid stack. Supported stacks are [hotwire], [react], [vue].', :red
   end
 
   private
@@ -53,9 +53,9 @@ class Kaze::Commands::InstallCommand < Thor
   def install_migrations
     ensure_directory_exists("#{Dir.pwd}/db/migrate")
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/db/migrate", "#{Dir.pwd}/db/migrate")
-    stdin, _ = Open3.capture3("rails version")
-    versions = stdin.gsub!("Rails ", "").split(".")
-    railsVersion = [ versions[0], versions[1] ].join(".")
+    stdin, _ = Open3.capture3('rails version')
+    versions = stdin.gsub!('Rails ', '').split('.')
+    railsVersion = [ versions[0], versions[1] ].join('.')
     Dir.children("#{Dir.pwd}/db/migrate").each do |file|
       path = "#{Dir.pwd}/db/migrate/#{file}"
       File.write(path, File.read(path).gsub!(/ActiveRecord::Migration$/, "ActiveRecord::Migration[#{railsVersion}]"))

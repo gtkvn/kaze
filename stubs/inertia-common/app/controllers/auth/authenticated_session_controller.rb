@@ -2,7 +2,7 @@ class Auth::AuthenticatedSessionController < ApplicationController
   skip_authentication only: %i[new create]
 
   def new
-    render inertia: "Auth/Login", props: {
+    render inertia: 'Auth/Login', props: {
       canResetPassword: true,
       status: flash[:status]
     }

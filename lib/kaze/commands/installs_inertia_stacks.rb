@@ -3,8 +3,8 @@ module Kaze::Commands::InstallsInertiaStacks
 
   def install_inertia_react_stack
     # Gems...
-    return unless remove_gems([ "sprockets-rails", "turbo-rails", "stimulus-rails" ])
-    return unless install_gems([ "propshaft", "tailwindcss-rails", "inertia_rails", "vite_rails", "dotenv", "bcrypt", "js-routes" ])
+    return unless remove_gems([ 'sprockets-rails', 'turbo-rails', 'stimulus-rails' ])
+    return unless install_gems([ 'propshaft', 'tailwindcss-rails', 'inertia_rails', 'vite_rails', 'dotenv', 'bcrypt', 'js-routes' ])
 
     # NPM Packages...
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-react-ts/package.json", "#{Dir.pwd}/package.json")
@@ -57,29 +57,29 @@ module Kaze::Commands::InstallsInertiaStacks
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/bin/dev", "#{Dir.pwd}/bin/dev")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/bin/vite", "#{Dir.pwd}/bin/vite")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
-    run_command("rails generate js_routes:middleware")
+    run_command('rails generate js_routes:middleware')
 
-    say ""
-    say "Installing and building Node dependencies.", :magenta
+    say ''
+    say 'Installing and building Node dependencies.', :magenta
 
     if File.exist?("#{Dir.pwd}/pnpm-lock.yaml")
-      run_commands([ "pnpm install", "pnpm run build" ])
+      run_commands([ 'pnpm install', 'pnpm run build' ])
     elsif File.exist?("#{Dir.pwd}/yarn.lock")
-      run_commands([ "yarn install", "yarn build" ])
+      run_commands([ 'yarn install', 'yarn build' ])
     elsif File.exist?("#{Dir.pwd}/bun.lockb")
-      run_commands([ "bun install", "bun run build" ])
+      run_commands([ 'bun install', 'bun run build' ])
     else
-      run_commands([ "npm install", "npm run build" ])
+      run_commands([ 'npm install', 'npm run build' ])
     end
 
-    say ""
-    say "Kaze scaffolding installed successfully.", :green
+    say ''
+    say 'Kaze scaffolding installed successfully.', :green
   end
 
   def install_inertia_vue_stack
     # Gems...
-    return unless remove_gems([ "sprockets-rails" ])
-    return unless install_gems([ "propshaft", "tailwindcss-rails", "inertia_rails", "vite_rails", "dotenv", "bcrypt", "js-routes" ])
+    return unless remove_gems([ 'sprockets-rails' ])
+    return unless install_gems([ 'propshaft', 'tailwindcss-rails', 'inertia_rails', 'vite_rails', 'dotenv', 'bcrypt', 'js-routes' ])
 
     # NPM Packages...
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-vue-ts/package.json", "#{Dir.pwd}/package.json")
@@ -132,22 +132,22 @@ module Kaze::Commands::InstallsInertiaStacks
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/bin/dev", "#{Dir.pwd}/bin/dev")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/bin/vite", "#{Dir.pwd}/bin/vite")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
-    run_command("rails generate js_routes:middleware")
+    run_command('rails generate js_routes:middleware')
 
-    say ""
-    say "Installing and building Node dependencies.", :magenta
+    say ''
+    say 'Installing and building Node dependencies.', :magenta
 
     if File.exist?("#{Dir.pwd}/pnpm-lock.yaml")
-      run_commands([ "pnpm install", "pnpm run build" ])
+      run_commands([ 'pnpm install', 'pnpm run build' ])
     elsif File.exist?("#{Dir.pwd}/yarn.lock")
-      run_commands([ "yarn install", "yarn build" ])
+      run_commands([ 'yarn install', 'yarn build' ])
     elsif File.exist?("#{Dir.pwd}/bun.lockb")
-      run_commands([ "bun install", "bun run build" ])
+      run_commands([ 'bun install', 'bun run build' ])
     else
-      run_commands([ "npm install", "npm run build" ])
+      run_commands([ 'npm install', 'npm run build' ])
     end
 
-    say ""
-    say "Kaze scaffolding installed successfully.", :green
+    say ''
+    say 'Kaze scaffolding installed successfully.', :green
   end
 end

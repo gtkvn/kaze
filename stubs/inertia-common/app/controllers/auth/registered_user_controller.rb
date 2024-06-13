@@ -2,7 +2,7 @@ class Auth::RegisteredUserController < ApplicationController
   skip_authentication
 
   def new
-    render inertia: "Auth/Register"
+    render inertia: 'Auth/Register'
   end
 
   def create
