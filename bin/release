@@ -2,7 +2,7 @@
 
 VERSION=$1
 
-printf "module Kaze\n  VERSION = \"$VERSION\"\nend\n" > ./lib/kaze/version.rb
+printf "module Kaze\n  VERSION = '$VERSION'\nend\n" > ./lib/kaze/version.rb
 bundle
 git add Gemfile.lock lib/kaze/version.rb
 git commit -m "Bump version for $VERSION"
