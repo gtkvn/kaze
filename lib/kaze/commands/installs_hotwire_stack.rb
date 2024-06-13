@@ -3,7 +3,7 @@ module Kaze::Commands::InstallsHotwireStack
 
   def install_hotwire_stack
     # Gems...
-    return unless remove_gems([ "sprockets-rails" ])
+    return unless remove_gems([ "sprockets-rails", "stimulus-rails" ])
     return unless install_gems([ "propshaft", "view_component", "tailwindcss-rails", "turbo-rails", "dotenv", "bcrypt" ])
     return unless install_gems([ "hotwire-livereload" ], "development")
 

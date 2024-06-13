@@ -55,7 +55,11 @@ class Kaze::Commands::InstallCommand < Thor
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/db/migrate", "#{Dir.pwd}/db/migrate")
     stdin, _ = Open3.capture3("rails version")
     versions = stdin.gsub!("Rails ", "").split(".")
-    Open3.capture3('grep -rl ActiveRecord::Migration$ db | xargs sed -i "" "s/ActiveRecord::Migration/ActiveRecord::Migration[' + [ versions[0], versions[1] ].join(".") + ']/g"')
+    railsVersion = [ versions[0], versions[1] ].join(".")
+    Dir.children("#{Dir.pwd}/db/migrate").each do |file|
+      path = "#{Dir.pwd}/db/migrate/#{file}"
+      File.write(path, File.read(path).gsub!(/ActiveRecord::Migration$/, "ActiveRecord::Migration[#{railsVersion}]"))
+    end
   end
 
   def ensure_directory_exists(path)

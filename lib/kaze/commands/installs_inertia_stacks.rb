@@ -3,7 +3,7 @@ module Kaze::Commands::InstallsInertiaStacks
 
   def install_inertia_react_stack
     # Gems...
-    return unless remove_gems([ "sprockets-rails" ])
+    return unless remove_gems([ "sprockets-rails", "turbo-rails", "stimulus-rails" ])
     return unless install_gems([ "propshaft", "tailwindcss-rails", "inertia_rails", "vite_rails", "dotenv", "bcrypt", "js-routes" ])
 
     # NPM Packages...
