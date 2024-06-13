@@ -41,7 +41,7 @@ Next, you may navigate to your application's `/login` or `/register` URLs in you
 
 Kaze offers React and Vue scaffolding via an Inertia frontend implementation. Inertia allows you to build modern, single-page React and Vue applications using classic server-side routing and controllers.
 
-Inertia lets you enjoy the frontend power of React and Vue combined with the incredible backend productivity of Rails and lightning-fast Vite compilation. To use an Inertia stack, specify vue or react as your desired stack when executing the `install` command inside your app directory:
+Inertia lets you enjoy the frontend power of React and Vue combined with the incredible backend productivity of Rails and lightning-fast Vite compilation. To use an Inertia stack, specify `react` or `vue` as your desired stack when executing the `install` command inside your app directory:
 
 ```
 kaze install react
