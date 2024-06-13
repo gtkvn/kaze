@@ -7,7 +7,7 @@ class Kaze::Commands::InstallCommand < Thor
   include Kaze::Commands::InstallsHotwireStack
   include Kaze::Commands::InstallsInertiaStacks
 
-  desc "install [STACK]", "Install the Kaze controllers and resources. Supported stacks: react, vue."
+  desc "install [STACK]", "Install the Kaze controllers and resources. Supported stacks: hotwire, react, vue."
   def install(stack = "hotwire")
     if stack == "hotwire"
       return install_hotwire_stack
@@ -21,7 +21,7 @@ class Kaze::Commands::InstallCommand < Thor
       return install_inertia_vue_stack
     end
 
-    say "Invalid stack. Supported stacks are [react], [vue].", :red
+    say "Invalid stack. Supported stacks are [hotwire], [react], [vue].", :red
   end
 
   private

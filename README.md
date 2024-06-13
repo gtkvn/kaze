@@ -4,7 +4,7 @@ Heavily inspired by [Laravel Breeze](https://github.com/laravel/breeze), this ge
 
 [Kaze](https://github.com/gtkvn/kaze) is a minimal, simple implementation of all of Rails's authentication features, including login, registration, password reset. In addition, Kaze includes a simple "profile" page where the user may update their name, email address, and password.
 
-Kaze provides scaffolding options based on Inertia, with the choice of using Vue or React for the Inertia-based scaffolding.
+Kaze provides scaffolding options based on [Hotwire](https://hotwired.dev) or [Inertia](https://inertiajs.com), with the choice of using Vue or React for the Inertia-based scaffolding.
 
 ## Installation
 
