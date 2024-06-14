@@ -4,7 +4,7 @@ class PasswordController < ApplicationController
 
     return render partial: 'profile/partials/update_password_form', status: :unprocessable_entity if @update_password_form.invalid?
 
-    Current.user.update(password: @update_password_form.password)
+    Current.auth.user.update(password: @update_password_form.password)
 
     redirect_back_or_to profile_edit_path, flash: { status: 'password-updated' }
   end

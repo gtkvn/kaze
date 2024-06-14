@@ -5,14 +5,8 @@ class Auth::LoginForm < ApplicationForm
   validates :password, presence: true
 
   def authenticate
-    return nil if invalid?
+    return if invalid?
 
-    user = User.authenticate_by(email: email, password: password)
-
-    return user if user.present?
-
-    errors.add(:email, message: 'These credentials do not match our records.')
-
-    nil
+    errors.add(:email, message: 'These credentials do not match our records.') unless Current.auth.attempt(email: email, password: password)
   end
 end

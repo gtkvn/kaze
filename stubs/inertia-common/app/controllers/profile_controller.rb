@@ -10,7 +10,7 @@ class ProfileController < ApplicationController
 
     return redirect_to profile_edit_path, inertia: { errors: form.error_messages } if form.invalid?
 
-    Current.user.update(name: form.name, email: form.email)
+    Current.auth.user.update(name: form.name, email: form.email)
 
     redirect_to profile_edit_path
   end
@@ -20,11 +20,13 @@ class ProfileController < ApplicationController
 
     return redirect_back_or_to profile_edit_path, inertia: { errors: form.error_messages } if form.invalid?
 
-    user = Current.user
+    user = Current.auth.user
 
-    logout
+    Current.auth.logout
 
     user.delete
+
+    reset_session
 
     redirect_to '/'
   end

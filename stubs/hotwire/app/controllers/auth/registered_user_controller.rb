@@ -1,5 +1,7 @@
 class Auth::RegisteredUserController < ApplicationController
-  skip_authentication
+  include RedirectIfAuthenticated
+
+  skip_authenticate
 
   layout 'guest'
 
@@ -16,7 +18,7 @@ class Auth::RegisteredUserController < ApplicationController
 
     user = User.create(name: @form.name, email: @form.email, password: @form.password)
 
-    login user
+    Current.auth.login user
 
     redirect_to dashboard_path
   end

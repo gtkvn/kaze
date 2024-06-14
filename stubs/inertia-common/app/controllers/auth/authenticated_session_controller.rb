@@ -1,5 +1,8 @@
 class Auth::AuthenticatedSessionController < ApplicationController
-  skip_authentication only: %i[new create]
+  include RedirectIfAuthenticated
+
+  skip_authenticate only: %i[new create]
+  skip_redirect_if_authenticated only: %i[destroy]
 
   def new
     render inertia: 'Auth/Login', props: {
@@ -11,18 +14,18 @@ class Auth::AuthenticatedSessionController < ApplicationController
   def create
     form = Auth::LoginForm.new params.permit(:email, :password)
 
-    user = form.authenticate
+    form.authenticate
 
-    return redirect_back_or_to login_path, inertia: { errors: form.error_messages } if user.nil?
-
-    login user
+    return redirect_back_or_to login_path, inertia: { errors: form.error_messages } if Current.auth.user.nil?
 
     redirect_to dashboard_path
   end
 
   def destroy
-    logout
+    Current.auth.logout
 
-    redirect_to login_path
+    reset_session
+
+    redirect_to '/'
   end
 end

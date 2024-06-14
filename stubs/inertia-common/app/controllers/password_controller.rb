@@ -4,7 +4,7 @@ class PasswordController < ApplicationController
 
     return redirect_to profile_edit_path, inertia: { errors: form.error_messages } if form.invalid?
 
-    Current.user.update(password: form.password)
+    Current.auth.user.update(password: form.password)
 
     redirect_back_or_to profile_edit_path
   end

@@ -3,7 +3,7 @@ module HandleInertiaRequests
 
   included do
     inertia_share do
-      { auth: { user: Current.user } }
+      { auth: { user: Current.auth.get_user } }
     end
   end
 end

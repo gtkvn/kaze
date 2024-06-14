@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  skip_authentication
+  skip_authenticate
 
   def index
     render inertia: 'Welcome', props: {

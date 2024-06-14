@@ -5,6 +5,7 @@ module Kaze::Commands::InstallsInertiaStacks
     # Gems...
     return unless remove_gems([ 'sprockets-rails', 'turbo-rails', 'stimulus-rails' ])
     return unless install_gems([ 'propshaft', 'tailwindcss-rails', 'inertia_rails', 'vite_rails', 'dotenv', 'bcrypt', 'js-routes' ])
+    return unless install_gems([ 'factory_bot_rails', 'faker' ], 'development, test')
 
     # NPM Packages...
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-react-ts/package.json", "#{Dir.pwd}/package.json")
@@ -40,6 +41,11 @@ module Kaze::Commands::InstallsInertiaStacks
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/inertia-react-ts/app/javascript", "#{Dir.pwd}/app/javascript")
 
     # Tests...
+    ensure_directory_exists("#{Dir.pwd}/test/factories")
+    ensure_directory_exists("#{Dir.pwd}/test/integration")
+    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/test/test_helper.rb", "#{Dir.pwd}/test/test_helper.rb")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/test/factories", "#{Dir.pwd}/test/factories")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/test/integration", "#{Dir.pwd}/test/integration")
 
     # Routes...
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/config/routes.rb", "#{Dir.pwd}/config/routes.rb")
@@ -115,6 +121,11 @@ module Kaze::Commands::InstallsInertiaStacks
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/inertia-vue-ts/app/javascript", "#{Dir.pwd}/app/javascript")
 
     # Tests...
+    ensure_directory_exists("#{Dir.pwd}/test/factories")
+    ensure_directory_exists("#{Dir.pwd}/test/integration")
+    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/test/test_helper.rb", "#{Dir.pwd}/test/test_helper.rb")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/test/factories", "#{Dir.pwd}/test/factories")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/test/integration", "#{Dir.pwd}/test/integration")
 
     # Routes...
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/config/routes.rb", "#{Dir.pwd}/config/routes.rb")

@@ -1,5 +1,8 @@
 class Auth::AuthenticatedSessionController < ApplicationController
-  skip_authentication only: %i[new create]
+  include RedirectIfAuthenticated
+
+  skip_authenticate only: %i[new create]
+  skip_redirect_if_authenticated only: %i[destroy]
 
   layout 'guest'
 
@@ -12,18 +15,18 @@ class Auth::AuthenticatedSessionController < ApplicationController
   def create
     @form = Auth::LoginForm.new params.permit(:email, :password)
 
-    user = @form.authenticate
+    @form.authenticate
 
-    return render 'auth/login', status: :unprocessable_entity if user.nil?
-
-    login user
+    return render 'auth/login', status: :unprocessable_entity if Current.auth.user.nil?
 
     redirect_to dashboard_path
   end
 
   def destroy
-    logout
+    Current.auth.logout
 
-    redirect_to login_path
+    reset_session
+
+    redirect_to '/'
   end
 end

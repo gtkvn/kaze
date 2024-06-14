@@ -1,5 +1,7 @@
 class Auth::PasswordResetLinkController < ApplicationController
-  skip_authentication
+  include RedirectIfAuthenticated
+
+  skip_authenticate
 
   def new
     render inertia: 'Auth/ForgotPassword', props: {

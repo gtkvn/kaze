@@ -1,5 +1,7 @@
 class Auth::NewPasswordController < ApplicationController
-  skip_authentication
+  include RedirectIfAuthenticated
+
+  skip_authenticate
 
   layout 'guest'
 
