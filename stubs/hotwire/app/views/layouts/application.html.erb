@@ -3,27 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-
     <title><%= content_for(:title) || "Rails" %></title>
-
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
     <%= hotwire_livereload_tags if Rails.env.development? %>
     <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
-
     <%= yield :head %>
   </head>
-
   <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
       <%= render "layouts/navigation" %>
-
       <!-- Page Heading -->
       <% if content_for?(:header) %>
         <header class="bg-white dark:bg-gray-800 shadow">
@@ -32,7 +24,6 @@
           </div>
         </header>
       <% end %>
-
       <!-- Page Content -->
       <main>
         <%= yield %>

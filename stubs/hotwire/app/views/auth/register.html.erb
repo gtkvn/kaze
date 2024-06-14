@@ -2,44 +2,31 @@
   <!-- Name -->
   <div>
     <%= render(InputLabelComponent.new({ for: "name", value: "Name" })) %>
-
     <%= render(TextInputComponent.new({ id: "name", class: "block mt-1 w-full", type: "text", name: "name", value: @form.name, required: true, autofocus: true, autocomplete: "name" })) %>
-
     <%= render(InputErrorComponent.new({ class: "mt-2", message: @form.error_messages[:name] })) %>
   </div>
-
   <!-- Email Address -->
   <div class="mt-4">
     <%= render(InputLabelComponent.new({ for: "email", value: "Email" })) %>
-
     <%= render(TextInputComponent.new({ id: "email", class: "block mt-1 w-full", type: "email", name: "email", value: @form.email, required: true, autocomplete: "username" })) %>
-
     <%= render(InputErrorComponent.new({ class: "mt-2", message: @form.error_messages[:email] })) %>
   </div>
-
   <!-- Password -->
   <div class="mt-4">
     <%= render(InputLabelComponent.new({ for: "password", value: "Password" })) %>
-
     <%= render(TextInputComponent.new({ id: "password", class: "block mt-1 w-full", type: "password", name: "password", required: true, autocomplete: "new-password" })) %>
-
     <%= render(InputErrorComponent.new({ class: "mt-2", message: @form.error_messages[:password] })) %>
   </div>
-
   <!-- Confirm Password -->
   <div class="mt-4">
     <%= render(InputLabelComponent.new({ for: "password_confirmation", value: "Confirm Password" })) %>
-
     <%= render(TextInputComponent.new({ id: "password_confirmation", class: "block mt-1 w-full", type: "password", name: "password_confirmation", required: true, autocomplete: "new-password" })) %>
-
     <%= render(InputErrorComponent.new({ class: "mt-2", message: @form.error_messages[:password_confirmation] })) %>
   </div>
-
   <div class="flex items-center justify-end mt-4">
     <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="<%= login_path %>">
       Already registered?
     </a>
-
     <%= render(PrimaryButtonComponent.new({ class: "ms-4" })) do %>
       Register
     <% end %>

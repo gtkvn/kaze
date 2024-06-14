@@ -3,17 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-
     <title><%= content_for(:title) || "Rails" %></title>
-
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= vite_client_tag %>
     <%= vite_react_refresh_tag %>
     <%= vite_typescript_tag 'application.tsx', defer: true %>
   </head>
-
   <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
       <%= yield %>
