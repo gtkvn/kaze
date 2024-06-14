@@ -81,8 +81,9 @@ module Kaze::Commands::InstallsInertiaStacks
 
   def install_inertia_vue_stack
     # Gems...
-    return unless remove_gems([ 'sprockets-rails' ])
+    return unless remove_gems([ 'sprockets-rails', 'turbo-rails', 'stimulus-rails' ])
     return unless install_gems([ 'propshaft', 'tailwindcss-rails', 'inertia_rails', 'vite_rails', 'dotenv', 'bcrypt', 'js-routes' ])
+    return unless install_gems([ 'factory_bot_rails', 'faker' ], 'development, test')
 
     # NPM Packages...
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-vue-ts/package.json", "#{Dir.pwd}/package.json")
