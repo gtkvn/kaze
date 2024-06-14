@@ -55,7 +55,7 @@ module Kaze::Commands::InstallsHotwireStack
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/assets/stylesheets/application.tailwind.css", "#{Dir.pwd}/app/assets/stylesheets/application.tailwind.css")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/hotwire/config/tailwind.config.js", "#{Dir.pwd}/config/tailwind.config.js")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/bin/dev", "#{Dir.pwd}/bin/dev")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/hotwire/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
+    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
     run_command('rails tailwindcss:build')
 
     say ''

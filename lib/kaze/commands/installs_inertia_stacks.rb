@@ -59,8 +59,10 @@ module Kaze::Commands::InstallsInertiaStacks
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-react-ts/vite.config.ts", "#{Dir.pwd}/vite.config.ts")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/bin/dev", "#{Dir.pwd}/bin/dev")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/bin/vite", "#{Dir.pwd}/bin/vite")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
+    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
+    File.write("#{Dir.pwd}/Procfile.dev", "#{File.read("#{Dir.pwd}/Procfile.dev")}\nvite: bin/vite dev\n")
     run_command('rails generate js_routes:middleware')
+    run_command('rails tailwindcss:build')
 
     say ''
     say 'Installing and building Node dependencies.', :magenta
@@ -137,8 +139,10 @@ module Kaze::Commands::InstallsInertiaStacks
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-vue-ts/vite.config.ts", "#{Dir.pwd}/vite.config.ts")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/bin/dev", "#{Dir.pwd}/bin/dev")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/bin/vite", "#{Dir.pwd}/bin/vite")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
+    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
+    File.write("#{Dir.pwd}/Procfile.dev", "#{File.read("#{Dir.pwd}/Procfile.dev")}\nvite: bin/vite dev\n")
     run_command('rails generate js_routes:middleware')
+    run_command('rails tailwindcss:build')
 
     say ''
     say 'Installing and building Node dependencies.', :magenta
