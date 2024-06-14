@@ -41,10 +41,7 @@ module Kaze::Commands::InstallsInertiaStacks
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/inertia-react-ts/app/javascript", "#{Dir.pwd}/app/javascript")
 
     # Tests...
-    ensure_directory_exists("#{Dir.pwd}/test/factories")
-    ensure_directory_exists("#{Dir.pwd}/test/integration")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/test/test_helper.rb", "#{Dir.pwd}/test/test_helper.rb")
-    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/test/factories", "#{Dir.pwd}/test/factories")
+    install_tests
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/test/integration", "#{Dir.pwd}/test/integration")
 
     # Routes...
@@ -121,10 +118,7 @@ module Kaze::Commands::InstallsInertiaStacks
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/inertia-vue-ts/app/javascript", "#{Dir.pwd}/app/javascript")
 
     # Tests...
-    ensure_directory_exists("#{Dir.pwd}/test/factories")
-    ensure_directory_exists("#{Dir.pwd}/test/integration")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/test/test_helper.rb", "#{Dir.pwd}/test/test_helper.rb")
-    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/test/factories", "#{Dir.pwd}/test/factories")
+    install_tests
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/test/integration", "#{Dir.pwd}/test/integration")
 
     # Routes...

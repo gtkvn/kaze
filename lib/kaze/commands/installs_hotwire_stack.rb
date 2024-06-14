@@ -42,11 +42,7 @@ module Kaze::Commands::InstallsHotwireStack
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/hotwire/config/importmap.rb", "#{Dir.pwd}/config/importmap.rb")
 
     # Tests...
-    ensure_directory_exists("#{Dir.pwd}/test/factories")
-    ensure_directory_exists("#{Dir.pwd}/test/integration")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/hotwire/test/test_helper.rb", "#{Dir.pwd}/test/test_helper.rb")
-    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/hotwire/test/factories", "#{Dir.pwd}/test/factories")
-    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/hotwire/test/integration", "#{Dir.pwd}/test/integration")
+    install_tests
 
     # Routes...
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/config/routes.rb", "#{Dir.pwd}/config/routes.rb")

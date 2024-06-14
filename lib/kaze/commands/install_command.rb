@@ -62,6 +62,14 @@ class Kaze::Commands::InstallCommand < Thor
     end
   end
 
+  def install_tests
+    ensure_directory_exists("#{Dir.pwd}/test/factories")
+    ensure_directory_exists("#{Dir.pwd}/test/integration")
+    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/test/test_helper.rb", "#{Dir.pwd}/test/test_helper.rb")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/test/factories", "#{Dir.pwd}/test/factories")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/test/integration", "#{Dir.pwd}/test/integration")
+  end
+
   def ensure_directory_exists(path)
     FileUtils.mkdir_p(path) unless File.directory?(path)
   end
