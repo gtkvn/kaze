@@ -1,7 +1,7 @@
-require "test_helper"
+require 'test_helper'
 
 class ProfileTest < ActionDispatch::IntegrationTest
-  test "profile page is displayed" do
+  test 'profile page is displayed' do
     user = FactoryBot.create :user
 
     acting_as(user).get profile_edit_path
@@ -9,12 +9,12 @@ class ProfileTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "profile information can be updated" do
+  test 'profile information can be updated' do
     user = FactoryBot.create :user
 
     acting_as(user).patch profile_edit_path, params: {
-      :name => 'Test User',
-      :email => 'test@example.com',
+      name: 'Test User',
+      email: 'test@example.com'
     }
 
     assert_redirected_to profile_edit_path
@@ -25,11 +25,11 @@ class ProfileTest < ActionDispatch::IntegrationTest
     assert_equal 'test@example.com', user.email
   end
 
-  test "user can delete their account" do
+  test 'user can delete their account' do
     user = FactoryBot.create :user
 
     acting_as(user).delete profile_destroy_path, params: {
-      :password => 'password'
+      password: 'password'
     }
 
     assert_redirected_to '/'
@@ -38,11 +38,11 @@ class ProfileTest < ActionDispatch::IntegrationTest
     assert_raise(ActiveRecord::RecordNotFound) { user.reload }
   end
 
-  test "correct password must be provided to delete account" do
+  test 'correct password must be provided to delete account' do
     user = FactoryBot.create :user
 
     acting_as(user).delete profile_destroy_path, params: {
-      :password => "wrong-password"
+      password: 'wrong-password'
     }
 
     assert_response :unprocessable_entity

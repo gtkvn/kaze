@@ -1,7 +1,7 @@
-require "test_helper"
+require 'test_helper'
 
 class Auth::PasswordResetTest < ActionDispatch::IntegrationTest
-  test "reset password link screen can be rendered" do
+  test 'reset password link screen can be rendered' do
     get password_request_path
 
     assert_response :success
@@ -19,7 +19,7 @@ class Auth::PasswordResetTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "reset password screen can be rendered" do
+  test 'reset password screen can be rendered' do
     user = FactoryBot.create :user
 
     get password_reset_path(token: user.generate_token_for(:password_reset))
@@ -27,7 +27,7 @@ class Auth::PasswordResetTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "password can be reset_with_valid_token" do
+  test 'password can be reset_with_valid_token' do
     user = FactoryBot.create :user
 
     post password_store_path, params: {

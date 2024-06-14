@@ -1,6 +1,6 @@
-ENV["RAILS_ENV"] ||= "test"
-require_relative "../config/environment"
-require "rails/test_help"
+ENV['RAILS_ENV'] ||= 'test'
+require_relative '../config/environment'
+require 'rails/test_help'
 
 module ActiveSupport
   class TestCase
@@ -12,13 +12,13 @@ module ActiveSupport
 
     # Add more helper methods to be used by all tests here...
     def acting_as(user)
-      post login_path, params: { email: user.email, password: "password" }
+      post login_path, params: { email: user.email, password: 'password' }
 
       self
     end
 
     def current_auth
-      return Auth.new('web', session)
+      Auth.new('web', session)
     end
 
     def assert_authenticated
