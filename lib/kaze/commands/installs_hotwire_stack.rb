@@ -38,7 +38,8 @@ module Kaze::Commands::InstallsHotwireStack
     ensure_directory_exists("#{Dir.pwd}/app/components")
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/hotwire/app/components", "#{Dir.pwd}/app/components")
     ensure_directory_exists("#{Dir.pwd}/app/javascript")
-    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/hotwire/app/javascript", "#{Dir.pwd}/app/javascript")
+    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/hotwire/app/javascript/application.js", "#{Dir.pwd}/app/javascript/application.js")
+    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/hotwire/app/javascript/alpinejs.stub", "#{Dir.pwd}/app/javascript/alpinejs.js")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/hotwire/config/importmap.rb", "#{Dir.pwd}/config/importmap.rb")
 
     # Tests...

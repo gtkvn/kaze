@@ -4,10 +4,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   resolve: {
-    dedupe: ['axios']
+    dedupe: ['axios'],
   },
-  plugins: [
-    Rails(),
-    react(),
-  ],
+  plugins: [Rails(), react()],
 })

@@ -4,10 +4,7 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   resolve: {
-    dedupe: ['axios']
+    dedupe: ['axios'],
   },
-  plugins: [
-    Rails(),
-    vue(),
-  ],
+  plugins: [Rails(), vue()],
 })
