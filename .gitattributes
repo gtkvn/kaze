@@ -1,0 +1,13 @@
+* text=auto
+
+*.html.erb diff=html
+*.css diff=css
+*.html diff=html
+*.md diff=markdown
+*.rb diff=rb
+
+/.github export-ignore
+/art export-ignore
+.editorconfig export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore
