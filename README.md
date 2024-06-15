@@ -1,3 +1,5 @@
+<p align="center"><img src="/art/logo.svg" alt="Logo Kaze"></p>
+
 # Kaze
 
 Heavily inspired by [Laravel Breeze](https://github.com/laravel/breeze), this gem offers authentication and application starter kits to give you a head start building your new Rails application. These kits automatically scaffold your application with the routes, controllers, and views you need to register and authenticate your application's users.
