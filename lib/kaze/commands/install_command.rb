@@ -76,12 +76,18 @@ class Kaze::Commands::InstallCommand < Thor
 
   def run_command(command)
     Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
-      Thread.new do
-        stdout.each { |line| say line }
+      stdout_thread = Thread.new do
+        while (line = stdout.gets) do
+          say line
+        end
       end
-      Thread.new do
-        stderr.each { |line| say line, :red }
+      stderr_thread = Thread.new do
+        while (line = stderr.gets) do
+          say line, :red
+        end
       end
+      stdout_thread.join
+      stderr_thread.join
       wait_thr.value
     end
   end
