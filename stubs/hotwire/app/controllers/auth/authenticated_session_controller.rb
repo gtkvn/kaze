@@ -13,7 +13,7 @@ class Auth::AuthenticatedSessionController < ApplicationController
   end
 
   def create
-    @form = Auth::LoginForm.new params.permit(:email, :password)
+    @form = Auth::LoginForm.new params.permit(:email, :password, :remember)
 
     @form.authenticate
 

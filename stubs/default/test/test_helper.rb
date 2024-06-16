@@ -18,7 +18,7 @@ module ActiveSupport
     end
 
     def current_auth
-      Auth.new('web', session)
+      SessionGuard.new(name: 'web', session: session)
     end
 
     def assert_authenticated

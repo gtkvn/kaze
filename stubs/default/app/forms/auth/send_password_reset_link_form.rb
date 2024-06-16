@@ -6,16 +6,14 @@ class Auth::SendPasswordResetLinkForm < ApplicationForm
   def send_reset_link?
     return false if invalid?
 
-    user = User.find_by(email: email)
+    user = User.find_by(email: @email)
 
     if user.nil?
       errors.add(:email, message: "We can't find a user with that email address.")
       return false
     end
 
-    token = user.generate_token_for(:password_reset)
-
-    user.send_password_reset_notification(token)
+    user.send_password_reset_notification(user.generate_token_for(:password_reset))
 
     true
   end

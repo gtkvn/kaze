@@ -3,7 +3,7 @@ module SetCurrentAuth
 
   included do
     before_action do
-      Current.auth = Auth.new('web', session)
+      Current.auth = SessionGuard.new(name: 'web', session: session, cookies: cookies)
     end
   end
 end

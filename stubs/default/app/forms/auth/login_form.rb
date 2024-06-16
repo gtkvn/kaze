@@ -1,5 +1,5 @@
 class Auth::LoginForm < ApplicationForm
-  attr_accessor :email, :password
+  attr_accessor :email, :password, :remember
 
   validates :email, presence: true, email: true
   validates :password, presence: true
@@ -7,6 +7,6 @@ class Auth::LoginForm < ApplicationForm
   def authenticate
     return if invalid?
 
-    errors.add(:email, message: 'These credentials do not match our records.') unless Current.auth.attempt(email: email, password: password)
+    errors.add(:email, message: 'These credentials do not match our records.') unless Current.auth.attempt({ email: @email, password: @password }, @remember)
   end
 end
