@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    kaze (0.7.0)
+    kaze (0.8.0)
       thor (~> 1.2)
       zeitwerk (~> 2.5)
 
