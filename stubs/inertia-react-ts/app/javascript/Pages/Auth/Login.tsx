@@ -10,10 +10,8 @@ import { login_path, password_request_path } from '@/routes'
 
 export default function Login({
   status,
-  canResetPassword,
 }: {
   status?: string
-  canResetPassword: boolean
 }) {
   const { data, setData, post, processing, errors, reset } = useForm({
     email: '',
@@ -87,14 +85,12 @@ export default function Login({
         </div>
 
         <div className="flex items-center justify-end mt-4">
-          {canResetPassword && (
-            <Link
-              href={password_request_path()}
-              className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Forgot your password?
-            </Link>
-          )}
+          <Link
+            href={password_request_path()}
+            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Forgot your password?
+          </Link>
 
           <PrimaryButton className="ms-4" disabled={processing}>
             Log in

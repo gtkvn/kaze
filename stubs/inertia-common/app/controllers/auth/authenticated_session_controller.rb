@@ -6,7 +6,6 @@ class Auth::AuthenticatedSessionController < ApplicationController
 
   def new
     render inertia: 'Auth/Login', props: {
-      canResetPassword: true,
       status: flash[:status]
     }
   end
