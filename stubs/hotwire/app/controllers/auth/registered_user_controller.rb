@@ -12,7 +12,7 @@ class Auth::RegisteredUserController < ApplicationController
   end
 
   def create
-    @form = Auth::RegisterForm.new params.permit(:name, :email, :password, :password_confirmation)
+    @form = Auth::RegisterForm.new(params.permit(:name, :email, :password, :password_confirmation))
 
     return render 'auth/register', status: :unprocessable_entity if @form.invalid?
 

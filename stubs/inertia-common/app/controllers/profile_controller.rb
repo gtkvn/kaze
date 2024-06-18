@@ -6,7 +6,7 @@ class ProfileController < ApplicationController
   end
 
   def update
-    form = UpdateProfileInformationForm.new params.permit(:name, :email)
+    form = UpdateProfileInformationForm.new(params.permit(:name, :email))
 
     return redirect_to profile_edit_path, inertia: { errors: form.error_messages } if form.invalid?
 
@@ -16,7 +16,7 @@ class ProfileController < ApplicationController
   end
 
   def destroy
-    form = DeleteUserForm.new params.permit(:password)
+    form = DeleteUserForm.new(params.permit(:password))
 
     return redirect_back_or_to profile_edit_path, inertia: { errors: form.error_messages } if form.invalid?
 

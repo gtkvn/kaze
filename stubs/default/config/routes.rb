@@ -15,11 +15,9 @@ Rails.application.routes.draw do
   get 'reset-password/:token', to: 'auth/new_password#new', as: :password_reset
   post 'reset-password', to: 'auth/new_password#create', as: :password_store
 
-  if User.include?(MustVerifyEmail)
-    get 'verify-email', to: 'auth/email_verification_notification#new', as: :verification_notice
-    post 'email/verification-notification', to: 'auth/email_verification_notification#create', as: :verification_send
-    get 'verify-email/:id/:hash', to: 'auth/verified_email#create', as: :verification_verify
-  end
+  get 'verify-email', to: 'auth/email_verification_notification#new', as: :verification_notice
+  post 'email/verification-notification', to: 'auth/email_verification_notification#create', as: :verification_send
+  get 'verify-email/:id/:hash', to: 'auth/verified_email#create', as: :verification_verify
 
   post 'logout', to: 'auth/authenticated_session#destroy', as: :logout
 
