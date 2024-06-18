@@ -6,6 +6,6 @@ class ApplicationMailer < ActionMailer::Base
   layout 'mailer'
 
   def default_url_options
-    { host: ENV.fetch('APP_URL', 'http://localhost') }
+    { host: ENV.fetch('APP_URL', 'http://localhost:3000') }
   end
 end

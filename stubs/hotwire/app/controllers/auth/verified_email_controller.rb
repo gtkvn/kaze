@@ -1,4 +1,6 @@
 class Auth::VerifiedEmailController < ApplicationController
+  include ValidateSignature
+
   skip_ensure_email_is_verified
 
   before_action { redirect_to dashboard_path unless User.include?(MustVerifyEmail) }
