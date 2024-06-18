@@ -1,9 +1,0 @@
-{
-  "scripts": {
-    "prettier:check": "prettier stubs/**/*.{js,ts,tsx,vue} --check",
-    "prettier:fix": "prettier stubs/**/*.{js,ts,tsx,vue} --write"
-  },
-  "devDependencies": {
-    "prettier": "^3.3.2"
-  }
-}
