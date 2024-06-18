@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include CanResetPassword
+  # include MustVerifyEmail
 
   has_secure_password
 

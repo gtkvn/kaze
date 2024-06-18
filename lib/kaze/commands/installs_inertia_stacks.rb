@@ -34,7 +34,7 @@ module Kaze::Commands::InstallsInertiaStacks
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-react-ts/app/views/layouts/application.html.erb", "#{Dir.pwd}/app/views/layouts/application.html.erb")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/views/layouts/mailer.html.erb", "#{Dir.pwd}/app/views/layouts/mailer.html.erb")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/views/layouts/mailer.text.erb", "#{Dir.pwd}/app/views/layouts/mailer.text.erb")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/views/user_mailer/reset_password.html.erb", "#{Dir.pwd}/app/views/user_mailer/reset_password.html.erb")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/app/views/user_mailer", "#{Dir.pwd}/app/views/user_mailer")
 
     # Components + Pages...
     ensure_directory_exists("#{Dir.pwd}/app/javascript")

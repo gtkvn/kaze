@@ -12,7 +12,7 @@ class Auth::PasswordResetLinkController < ApplicationController
   end
 
   def create
-    @form = Auth::SendPasswordResetLinkForm.new params.permit(:email)
+    @form = Auth::SendPasswordResetLinkForm.new(params.permit(:email))
 
     return redirect_back_or_to password_request_path, flash: { status: 'We have emailed your password reset link.' } if @form.send_reset_link?
 

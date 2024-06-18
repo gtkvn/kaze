@@ -32,7 +32,7 @@ module Kaze::Commands::InstallsHotwireStack
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/hotwire/app/views", "#{Dir.pwd}/app/views")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/views/layouts/mailer.html.erb", "#{Dir.pwd}/app/views/layouts/mailer.html.erb")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/views/layouts/mailer.text.erb", "#{Dir.pwd}/app/views/layouts/mailer.text.erb")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/views/user_mailer/reset_password.html.erb", "#{Dir.pwd}/app/views/user_mailer/reset_password.html.erb")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/app/views/user_mailer", "#{Dir.pwd}/app/views/user_mailer")
 
     # Components + Pages...
     ensure_directory_exists("#{Dir.pwd}/app/components")

@@ -6,13 +6,13 @@ class Auth::NewPasswordController < ApplicationController
   layout 'guest'
 
   def new
-    @form = Auth::NewPasswordForm.new params.permit(:token)
+    @form = Auth::NewPasswordForm.new(params.permit(:token))
 
     render 'auth/reset_password'
   end
 
   def create
-    @form = Auth::NewPasswordForm.new params.permit(:token, :password, :password_confirmation)
+    @form = Auth::NewPasswordForm.new(params.permit(:token, :password, :password_confirmation))
 
     return redirect_to login_path, flash: { status: 'Your password has been reset.' } if @form.reset?
 
