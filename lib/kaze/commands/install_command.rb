@@ -9,6 +9,8 @@ class Kaze::Commands::InstallCommand < Thor
 
   desc 'install [STACK]', 'Install the Kaze controllers and resources. Supported stacks: hotwire, react, vue.'
   def install(stack = 'hotwire')
+    return say 'Kaze must be run in a new Rails application.', :red unless File.exist?("#{Dir.pwd}/bin/rails")
+
     if stack == 'hotwire'
       return install_hotwire_stack
     end
@@ -53,7 +55,7 @@ class Kaze::Commands::InstallCommand < Thor
   def install_migrations
     ensure_directory_exists("#{Dir.pwd}/db/migrate")
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/db/migrate", "#{Dir.pwd}/db/migrate")
-    stdin, _ = Open3.capture3('rails version')
+    stdin, _ = Open3.capture3("#{Dir.pwd}/bin/rails version")
     versions = stdin.gsub!('Rails ', '').split('.')
     railsVersion = [ versions[0], versions[1] ].join('.')
     Dir.children("#{Dir.pwd}/db/migrate").each do |file|
