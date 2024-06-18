@@ -14,7 +14,6 @@ class Auth::NewPasswordController < ApplicationController
 
     return redirect_to login_path, flash: { status: 'Your password has been reset.' } if form.reset?
 
-    redirect_back_or_to password_reset_path(token: form.token),
-                        inertia: { errors: form.error_messages }
+    redirect_back_or_to password_reset_path(token: form.token), inertia: { errors: form.error_messages }
   end
 end

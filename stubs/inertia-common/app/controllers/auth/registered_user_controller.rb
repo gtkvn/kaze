@@ -14,6 +14,10 @@ class Auth::RegisteredUserController < ApplicationController
 
     user = User.create(name: form.name, email: form.email, password: form.password)
 
+    if User.include?(MustVerifyEmail) && !user.has_verified_email?
+      user.send_email_verification_notification
+    end
+
     Current.auth.login user
 
     redirect_to dashboard_path
