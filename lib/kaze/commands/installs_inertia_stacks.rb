@@ -34,7 +34,7 @@ module Kaze::Commands::InstallsInertiaStacks
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-react-ts/app/views/layouts/application.html.erb", "#{Dir.pwd}/app/views/layouts/application.html.erb")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/views/layouts/mailer.html.erb", "#{Dir.pwd}/app/views/layouts/mailer.html.erb")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/views/layouts/mailer.text.erb", "#{Dir.pwd}/app/views/layouts/mailer.text.erb")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/app/views/user_mailer/reset_password.html.erb", "#{Dir.pwd}/app/views/user_mailer/reset_password.html.erb")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/app/views/user_mailer", "#{Dir.pwd}/app/views/user_mailer")
 
     # Components + Pages...
     ensure_directory_exists("#{Dir.pwd}/app/javascript")
@@ -60,9 +60,9 @@ module Kaze::Commands::InstallsInertiaStacks
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/bin/dev", "#{Dir.pwd}/bin/dev")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/bin/vite", "#{Dir.pwd}/bin/vite")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
-    File.write("#{Dir.pwd}/Procfile.dev", "#{File.read("#{Dir.pwd}/Procfile.dev")}\nvite: bin/vite dev\n")
-    run_command('rails generate js_routes:middleware')
-    run_command('rails tailwindcss:build')
+    File.write("#{Dir.pwd}/Procfile.dev", "#{File.read("#{Dir.pwd}/Procfile.dev")}\nvite: bundle exec rake js:routes:typescript && bin/vite dev\n")
+    run_command("#{Dir.pwd}/bin/rails generate js_routes:middleware")
+    run_command("#{Dir.pwd}/bin/rails tailwindcss:build")
 
     say ''
     say 'Installing and building Node dependencies.', :magenta
@@ -140,9 +140,9 @@ module Kaze::Commands::InstallsInertiaStacks
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/bin/dev", "#{Dir.pwd}/bin/dev")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/bin/vite", "#{Dir.pwd}/bin/vite")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
-    File.write("#{Dir.pwd}/Procfile.dev", "#{File.read("#{Dir.pwd}/Procfile.dev")}\nvite: bin/vite dev\n")
-    run_command('rails generate js_routes:middleware')
-    run_command('rails tailwindcss:build')
+    File.write("#{Dir.pwd}/Procfile.dev", "#{File.read("#{Dir.pwd}/Procfile.dev")}\nvite: bundle exec rake js:routes:typescript && bin/vite dev\n")
+    run_command("#{Dir.pwd}/bin/rails generate js_routes:middleware")
+    run_command("#{Dir.pwd}/bin/rails tailwindcss:build")
 
     say ''
     say 'Installing and building Node dependencies.', :magenta

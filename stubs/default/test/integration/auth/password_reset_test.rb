@@ -8,7 +8,7 @@ class Auth::PasswordResetTest < ActionDispatch::IntegrationTest
   end
 
   test 'reset password link can be requested' do
-    user = FactoryBot.create :user
+    user = FactoryBot.create(:user)
     token = user.generate_token_for(:password_reset)
     email = UserMailer.with(user: user, token: token).reset_password
 
@@ -20,7 +20,7 @@ class Auth::PasswordResetTest < ActionDispatch::IntegrationTest
   end
 
   test 'reset password screen can be rendered' do
-    user = FactoryBot.create :user
+    user = FactoryBot.create(:user)
 
     get password_reset_path(token: user.generate_token_for(:password_reset))
 
@@ -28,7 +28,7 @@ class Auth::PasswordResetTest < ActionDispatch::IntegrationTest
   end
 
   test 'password can be reset_with_valid_token' do
-    user = FactoryBot.create :user
+    user = FactoryBot.create(:user)
 
     post password_store_path, params: {
       token: user.generate_token_for(:password_reset),

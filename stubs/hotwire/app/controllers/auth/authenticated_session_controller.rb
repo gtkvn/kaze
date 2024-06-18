@@ -2,7 +2,8 @@ class Auth::AuthenticatedSessionController < ApplicationController
   include RedirectIfAuthenticated
 
   skip_authenticate only: %i[new create]
-  skip_redirect_if_authenticated only: %i[destroy]
+  skip_redirect_if_authenticated only: :destroy
+  skip_ensure_email_is_verified only: :destroy
 
   layout 'guest'
 
@@ -13,7 +14,7 @@ class Auth::AuthenticatedSessionController < ApplicationController
   end
 
   def create
-    @form = Auth::LoginForm.new params.permit(:email, :password, :remember)
+    @form = Auth::LoginForm.new(params.permit(:email, :password, :remember))
 
     @form.authenticate
 

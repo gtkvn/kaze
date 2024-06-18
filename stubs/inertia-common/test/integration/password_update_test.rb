@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PasswordUpdateTest < ActionDispatch::IntegrationTest
   test 'password can be updated' do
-    user = FactoryBot.create :user
+    user = FactoryBot.create(:user)
 
     acting_as(user).put password_update_path, params: {
       current_password: 'password',
@@ -15,7 +15,7 @@ class PasswordUpdateTest < ActionDispatch::IntegrationTest
   end
 
   test 'correct password must be provided to update password' do
-    user = FactoryBot.create :user
+    user = FactoryBot.create(:user)
 
     acting_as(user).put password_update_path, params: {
       current_password: 'wrong-password',

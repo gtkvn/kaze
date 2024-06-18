@@ -8,7 +8,7 @@ class Auth::AuthenticationTest < ActionDispatch::IntegrationTest
   end
 
   test 'users can authenticate using the login screen' do
-    user = FactoryBot.create :user
+    user = FactoryBot.create(:user)
 
     post login_path, params: {
       email: user.email,
@@ -20,7 +20,7 @@ class Auth::AuthenticationTest < ActionDispatch::IntegrationTest
   end
 
   test 'users cannot authenticate with invalid password' do
-    user = FactoryBot.create :user
+    user = FactoryBot.create(:user)
 
     post login_path, params: {
       email: user.email,
@@ -31,11 +31,9 @@ class Auth::AuthenticationTest < ActionDispatch::IntegrationTest
   end
 
   test 'users can logout' do
-    user = FactoryBot.create :user
+    user = FactoryBot.create(:user)
 
-    acting_as user
-
-    post logout_path
+    acting_as(user).post logout_path
 
     assert_guest
     assert_redirected_to '/'

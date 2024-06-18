@@ -8,7 +8,7 @@ class ProfileController < ApplicationController
   end
 
   def update
-    @update_profile_information_form = UpdateProfileInformationForm.new params.permit(:name, :email)
+    @update_profile_information_form = UpdateProfileInformationForm.new(params.permit(:name, :email))
 
     return render partial: 'profile/partials/update_profile_information_form', status: :unprocessable_entity if @update_profile_information_form.invalid?
 
@@ -18,7 +18,7 @@ class ProfileController < ApplicationController
   end
 
   def destroy
-    @delete_user_form = DeleteUserForm.new params.permit(:password)
+    @delete_user_form = DeleteUserForm.new(params.permit(:password))
 
     return render partial: 'profile/partials/delete_user_form', status: :unprocessable_entity if @delete_user_form.invalid?
 
