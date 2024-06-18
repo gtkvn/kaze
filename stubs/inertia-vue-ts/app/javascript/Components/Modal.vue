@@ -60,11 +60,7 @@ const maxWidthClass = computed(() => {
 <template>
   <Teleport to="body">
     <Transition leave-active-class="duration-200">
-      <div
-        v-show="show"
-        class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50"
-        scroll-region
-      >
+      <div v-show="show" class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50" scroll-region>
         <Transition
           enter-active-class="ease-out duration-300"
           enter-from-class="opacity-0"
@@ -73,14 +69,8 @@ const maxWidthClass = computed(() => {
           leave-from-class="opacity-100"
           leave-to-class="opacity-0"
         >
-          <div
-            v-show="show"
-            class="fixed inset-0 transform transition-all"
-            @click="close"
-          >
-            <div
-              class="absolute inset-0 bg-gray-500 dark:bg-gray-900 opacity-75"
-            />
+          <div v-show="show" class="fixed inset-0 transform transition-all" @click="close">
+            <div class="absolute inset-0 bg-gray-500 dark:bg-gray-900 opacity-75" />
           </div>
         </Transition>
 

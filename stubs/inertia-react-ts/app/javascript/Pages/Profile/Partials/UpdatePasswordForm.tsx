@@ -7,20 +7,15 @@ import { useForm } from '@inertiajs/react'
 import { Transition } from '@headlessui/react'
 import { password_update_path } from '@/routes'
 
-export default function UpdatePasswordForm({
-  className = '',
-}: {
-  className?: string
-}) {
+export default function UpdatePasswordForm({ className = '' }: { className?: string }) {
   const passwordInput = useRef<HTMLInputElement>(null)
   const currentPasswordInput = useRef<HTMLInputElement>(null)
 
-  const { data, setData, errors, put, reset, processing, recentlySuccessful } =
-    useForm({
-      current_password: '',
-      password: '',
-      password_confirmation: '',
-    })
+  const { data, setData, errors, put, reset, processing, recentlySuccessful } = useForm({
+    current_password: '',
+    password: '',
+    password_confirmation: '',
+  })
 
   const updatePassword: FormEventHandler = (e) => {
     e.preventDefault()
@@ -86,10 +81,7 @@ export default function UpdatePasswordForm({
         </div>
 
         <div>
-          <InputLabel
-            htmlFor="password_confirmation"
-            value="Confirm Password"
-          />
+          <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
 
           <TextInput
             id="password_confirmation"

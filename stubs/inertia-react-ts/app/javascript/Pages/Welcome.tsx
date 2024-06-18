@@ -64,8 +64,7 @@ export default function Welcome({
             target="_blank"
             style={{
               transition: 'background 0.25s cubic-bezier(0.33, 1, 0.68, 1)',
-              filter:
-                'drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08))',
+              filter: 'drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08))',
             }}
           >
             <img

@@ -1,10 +1,4 @@
-import {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  InputHTMLAttributes,
-} from 'react'
+import { forwardRef, useEffect, useImperativeHandle, useRef, InputHTMLAttributes } from 'react'
 
 export default forwardRef(function TextInput(
   {

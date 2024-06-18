@@ -8,11 +8,7 @@ import TextInput from '@/Components/TextInput'
 import { Head, Link, useForm } from '@inertiajs/react'
 import { login_path, password_request_path } from '@/routes'
 
-export default function Login({
-  status,
-}: {
-  status?: string
-}) {
+export default function Login({ status }: { status?: string }) {
   const { data, setData, post, processing, errors, reset } = useForm({
     email: '',
     password: '',
@@ -35,9 +31,7 @@ export default function Login({
     <GuestLayout>
       <Head title="Log in" />
 
-      {status && (
-        <div className="mb-4 font-medium text-sm text-green-600">{status}</div>
-      )}
+      {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
       <form onSubmit={submit}>
         <div>
@@ -75,11 +69,7 @@ export default function Login({
 
         <div className="block mt-4">
           <label className="flex items-center">
-            <Checkbox
-              name="remember"
-              checked={data.remember}
-              onChange={(e) => setData('remember', e.target.checked)}
-            />
+            <Checkbox name="remember" checked={data.remember} onChange={(e) => setData('remember', e.target.checked)} />
             <span className="ms-2 text-sm text-gray-600">Remember me</span>
           </label>
         </div>

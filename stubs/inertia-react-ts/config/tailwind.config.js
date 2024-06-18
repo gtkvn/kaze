@@ -3,12 +3,7 @@ import forms from '@tailwindcss/forms'
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    './public/*.html',
-    './app/helpers/**/*.rb',
-    './app/views/**/*',
-    './app/javascript/**/*.tsx',
-  ],
+  content: ['./public/*.html', './app/helpers/**/*.rb', './app/views/**/*', './app/javascript/**/*.tsx'],
 
   theme: {
     extend: {

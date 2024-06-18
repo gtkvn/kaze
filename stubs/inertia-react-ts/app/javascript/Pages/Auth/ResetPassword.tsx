@@ -49,10 +49,7 @@ export default function ResetPassword({ token }: { token: string }) {
         </div>
 
         <div className="mt-4">
-          <InputLabel
-            htmlFor="password_confirmation"
-            value="Confirm Password"
-          />
+          <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
 
           <TextInput
             type="password"

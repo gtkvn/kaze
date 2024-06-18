@@ -84,10 +84,7 @@ export default function Register() {
         </div>
 
         <div className="mt-4">
-          <InputLabel
-            htmlFor="password_confirmation"
-            value="Confirm Password"
-          />
+          <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
 
           <TextInput
             id="password_confirmation"

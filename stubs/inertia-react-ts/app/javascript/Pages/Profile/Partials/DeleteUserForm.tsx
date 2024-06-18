@@ -8,11 +8,7 @@ import TextInput from '@/Components/TextInput'
 import { useForm } from '@inertiajs/react'
 import { profile_destroy_path } from '@/routes'
 
-export default function DeleteUserForm({
-  className = '',
-}: {
-  className?: string
-}) {
+export default function DeleteUserForm({ className = '' }: { className?: string }) {
   const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false)
   const passwordInput = useRef<HTMLInputElement>(null)
 
@@ -54,9 +50,8 @@ export default function DeleteUserForm({
         <h2 className="text-lg font-medium text-gray-900">Delete Account</h2>
 
         <p className="mt-1 text-sm text-gray-600">
-          Once your account is deleted, all of its resources and data will be
-          permanently deleted. Before deleting your account, please download any
-          data or information that you wish to retain.
+          Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your
+          account, please download any data or information that you wish to retain.
         </p>
       </header>
 
@@ -64,22 +59,15 @@ export default function DeleteUserForm({
 
       <Modal show={confirmingUserDeletion} onClose={closeModal}>
         <form onSubmit={deleteUser} className="p-6">
-          <h2 className="text-lg font-medium text-gray-900">
-            Are you sure you want to delete your account?
-          </h2>
+          <h2 className="text-lg font-medium text-gray-900">Are you sure you want to delete your account?</h2>
 
           <p className="mt-1 text-sm text-gray-600">
-            Once your account is deleted, all of its resources and data will be
-            permanently deleted. Please enter your password to confirm you would
-            like to permanently delete your account.
+            Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your
+            password to confirm you would like to permanently delete your account.
           </p>
 
           <div className="mt-6">
-            <InputLabel
-              htmlFor="password"
-              value="Password"
-              className="sr-only"
-            />
+            <InputLabel htmlFor="password" value="Password" className="sr-only" />
 
             <TextInput
               id="password"

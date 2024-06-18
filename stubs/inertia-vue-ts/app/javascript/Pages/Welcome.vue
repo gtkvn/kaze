@@ -18,9 +18,7 @@ defineProps<{
       font-size: calc(0.9em + 0.5vw);
     "
   >
-    <header
-      class="absolute top-0 right-0 grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3"
-    >
+    <header class="absolute top-0 right-0 grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
       <div class="-mx-3 flex flex-1 justify-end">
         <Link
           :href="dashboard_path()"
@@ -63,8 +61,7 @@ defineProps<{
         target="_blank"
         style="
           transition: background 0.25s cubic-bezier(0.33, 1, 0.68, 1);
-          filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03))
-            drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
+          filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
         "
       >
         <img

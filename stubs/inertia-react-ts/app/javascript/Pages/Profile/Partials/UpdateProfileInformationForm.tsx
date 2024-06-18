@@ -8,18 +8,13 @@ import { FormEventHandler } from 'react'
 import { PageProps } from '@/types'
 import { profile_update_path } from '@/routes'
 
-export default function UpdateProfileInformation({
-  className = '',
-}: {
-  className?: string
-}) {
+export default function UpdateProfileInformation({ className = '' }: { className?: string }) {
   const user = usePage<PageProps>().props.auth.user
 
-  const { data, setData, patch, errors, processing, recentlySuccessful } =
-    useForm({
-      name: user.name,
-      email: user.email,
-    })
+  const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
+    name: user.name,
+    email: user.email,
+  })
 
   const submit: FormEventHandler = (e) => {
     e.preventDefault()
@@ -30,13 +25,9 @@ export default function UpdateProfileInformation({
   return (
     <section className={className}>
       <header>
-        <h2 className="text-lg font-medium text-gray-900">
-          Profile Information
-        </h2>
+        <h2 className="text-lg font-medium text-gray-900">Profile Information</h2>
 
-        <p className="mt-1 text-sm text-gray-600">
-          Update your account's profile information and email address.
-        </p>
+        <p className="mt-1 text-sm text-gray-600">Update your account's profile information and email address.</p>
       </header>
 
       <form onSubmit={submit} className="mt-6 space-y-6">
