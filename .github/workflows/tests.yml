@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Install native packages
-        run: apt-get update && apt-get install -y build-essential
+        run: sudo apt-get update && sudo apt-get install -y build-essential
 
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
