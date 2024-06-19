@@ -21,13 +21,13 @@ jobs:
 
     steps:
       - name: Install native packages
-        run: sudo apt-get update && sudo apt-get install -yqq build-essential libgmp-dev
+        run: sudo apt-get update && sudo apt-get install -yqq build-essential libgmp-dev ruby-dev
 
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3.0
-          bundler-cache: true
+          # bundler-cache: true
 
       - name: Setup Rails
         run: |
