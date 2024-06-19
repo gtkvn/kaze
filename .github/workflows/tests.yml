@@ -31,6 +31,7 @@ jobs:
 
       - name: Setup Rails
         run: |
+          gem install bundler
           gem install rails
           rails new .
 
