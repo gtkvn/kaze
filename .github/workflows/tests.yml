@@ -20,8 +20,8 @@ jobs:
     name: Test Stubs - Rails - ${{ matrix.stack }}
 
     steps:
-      - name: Install native packages
-        run: sudo apt-get update && sudo apt-get install -yqq build-essential libgmp-dev ruby-dev
+      # - name: Install native packages
+      #   run: sudo apt-get update && sudo apt-get install -yqq build-essential libgmp-dev ruby-dev
 
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
@@ -31,7 +31,6 @@ jobs:
 
       - name: Setup Rails
         run: |
-          gem install bundler
           gem install rails
           rails new .
           bundle add bcrypt
