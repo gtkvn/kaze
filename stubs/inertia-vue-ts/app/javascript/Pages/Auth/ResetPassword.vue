@@ -8,13 +8,11 @@ import { Head, useForm } from '@inertiajs/vue3'
 import { password_store_path } from '@/routes'
 
 const props = defineProps<{
-  email: string
   token: string
 }>()
 
 const form = useForm({
   token: props.token,
-  email: props.email,
   password: '',
   password_confirmation: '',
 })
@@ -34,22 +32,6 @@ const submit = () => {
 
     <form @submit.prevent="submit">
       <div>
-        <InputLabel for="email" value="Email" />
-
-        <TextInput
-          id="email"
-          type="email"
-          class="mt-1 block w-full"
-          v-model="form.email"
-          required
-          autofocus
-          autocomplete="username"
-        />
-
-        <InputError class="mt-2" :message="form.errors.email" />
-      </div>
-
-      <div class="mt-4">
         <InputLabel for="password" value="Password" />
 
         <TextInput
@@ -58,6 +40,7 @@ const submit = () => {
           class="mt-1 block w-full"
           v-model="form.password"
           required
+          autofocus
           autocomplete="new-password"
         />
 
