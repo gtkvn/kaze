@@ -20,6 +20,9 @@ jobs:
     name: Test Stubs - Rails - ${{ matrix.stack }}
 
     steps:
+      - name: Install native packages
+        run: sudo apt-get update && sudo apt-get install -yqq ruby-dev
+
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
@@ -30,7 +33,6 @@ jobs:
         run: |
           gem install rails
           rails new .
-          bundle add bcrypt
 
       - name: Checkout code
         uses: actions/checkout@v4
