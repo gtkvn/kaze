@@ -18,14 +18,14 @@ jobs:
       BUNDLE_ONLY: rubocop
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3.0
           bundler-cache: true
-
-      - name: Checkout code
-        uses: actions/checkout@v4
 
       - name: Run Rubocop
         run: bundle exec rubocop --parallel
