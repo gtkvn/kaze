@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Install native packages
-        run: sudo apt-get update && sudo apt-get install -yqq ruby-dev
+        run: sudo apt-get update && sudo apt-get install -yqq build-essential libgmp-dev
 
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
