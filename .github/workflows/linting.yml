@@ -1,22 +1,31 @@
-name: CI
+name: linting
+
 on:
   push:
     branches:
       - master
   pull_request:
+  schedule:
+    - cron: '0 0 * * *'
+
 jobs:
   rubocop:
-    name: RuboCop
     runs-on: ubuntu-latest
+
+    name: RuboCop
+
     env:
       BUNDLE_ONLY: rubocop
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Setup Ruby and install gems
+
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3.0
           bundler-cache: true
+
       - name: Run Rubocop
         run: bundle exec rubocop --parallel
