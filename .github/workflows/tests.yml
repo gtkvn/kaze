@@ -42,6 +42,7 @@ jobs:
       - name: Install Kaze
         run: |
           bundle add kaze --path ./kaze
+          bundle install
           bundle exec kaze install ${{ matrix.stack }}
 
       - name: Install NPM dependencies
