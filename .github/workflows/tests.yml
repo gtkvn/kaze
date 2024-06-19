@@ -38,9 +38,8 @@ jobs:
 
       - name: Install Kaze
         run: |
-          gem build ./kaze/kaze.gemspec -o kaze.gem
-          gem install kaze.gem
-          kaze install ${{ matrix.stack }}
+          bundle add kaze --path ./kaze
+          bundle exec kaze install ${{ matrix.stack }}
 
       - name: Install NPM dependencies
         if: matrix.stack != 'hotwire'
