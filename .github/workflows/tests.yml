@@ -1,0 +1,56 @@
+name: tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  stub-tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        stack: [hotwire, react, vue]
+
+    name: Test Stubs - Rails - ${{ matrix.stack }}
+
+    steps:
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.0
+          bundler-cache: true
+
+      - name: Setup Rails
+        run: |
+          gem install rails
+          rails new .
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          path: 'kaze'
+
+      - name: Install Kaze
+        run: |
+          gem build ./kaze/kaze.gemspec -o kaze.gem
+          gem install kaze.gem
+          kaze install ${{ matrix.stack }}
+
+      - name: Install NPM dependencies
+        if: matrix.stack != 'hotwire'
+        run: npm i
+
+      - name: Compile assets
+        if: matrix.stack != 'hotwire'
+        run: npm run build
+
+      - name: Execute tests
+        run: |
+          bundle exec rails db:prepare
+          bundle exec rake test
