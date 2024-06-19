@@ -1,4 +1,6 @@
 class PasswordController < ApplicationController
+  skip_ensure_email_is_verified
+
   def update
     @update_password_form = UpdatePasswordForm.new(params.permit(:current_password, :password, :password_confirmation))
 

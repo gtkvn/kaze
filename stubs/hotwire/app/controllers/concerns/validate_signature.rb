@@ -3,7 +3,7 @@ module ValidateSignature
 
   included do
     before_action do
-      render file: "#{Rails.root}/public/404.html",  layout: false, status: :not_found unless has_valid_signature?
+      render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found unless has_valid_signature?
     end
   end
 

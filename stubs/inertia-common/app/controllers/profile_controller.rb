@@ -1,7 +1,10 @@
 class ProfileController < ApplicationController
+  skip_ensure_email_is_verified
+
   def edit
     render inertia: 'Profile/Edit', props: {
-      status: session[:status]
+      mustVerifyEmail: User.include?(MustVerifyEmail),
+      status: flash[:status]
     }
   end
 
@@ -10,7 +13,7 @@ class ProfileController < ApplicationController
 
     return redirect_to profile_edit_path, inertia: { errors: form.error_messages } if form.invalid?
 
-    Current.auth.user.update(name: form.name, email: form.email)
+    form.update
 
     redirect_to profile_edit_path
   end

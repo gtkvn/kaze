@@ -1,4 +1,6 @@
 class ProfileController < ApplicationController
+  skip_ensure_email_is_verified
+
   def edit
     @update_profile_information_form = UpdateProfileInformationForm.new(name: Current.auth.user.name, email: Current.auth.user.email)
     @update_password_form = UpdatePasswordForm.new
@@ -12,7 +14,7 @@ class ProfileController < ApplicationController
 
     return render partial: 'profile/partials/update_profile_information_form', status: :unprocessable_entity if @update_profile_information_form.invalid?
 
-    Current.auth.user.update(name: @update_profile_information_form.name, email: @update_profile_information_form.email)
+    @update_profile_information_form.update
 
     redirect_to profile_edit_path, flash: { status: 'profile-updated' }
   end

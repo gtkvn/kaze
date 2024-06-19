@@ -16,6 +16,6 @@ class Auth::EmailVerificationNotificationController < ApplicationController
 
     Current.auth.user.send_email_verification_notification
 
-    redirect_back_or_to dashboard_path, flash: { status: 'verification-link-sent' }
+    redirect_back_or_to verification_notice_path, flash: { status: 'verification-link-sent' }
   end
 end

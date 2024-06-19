@@ -25,6 +25,18 @@ class ProfileTest < ActionDispatch::IntegrationTest
     assert_equal 'test@example.com', user.email
   end
 
+  test 'email verification status is unchanged when the email address is unchanged' do
+    user = FactoryBot.create(:user)
+
+    acting_as(user).patch profile_edit_path, params: {
+      name: 'Test User',
+      email: user.email
+    }
+
+    assert_redirected_to profile_edit_path
+    assert_not user.reload.email_verified_at.blank?
+  end
+
   test 'user can delete their account' do
     user = FactoryBot.create(:user)
 
