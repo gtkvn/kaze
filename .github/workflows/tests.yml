@@ -33,7 +33,6 @@ jobs:
         run: |
           gem install rails
           rails new .
-          bundle install
 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -43,7 +42,7 @@ jobs:
       - name: Install Kaze
         run: |
           bundle add kaze --path ./kaze
-          kaze install ${{ matrix.stack }}
+          bundle exec kaze install ${{ matrix.stack }}
 
       - name: Install NPM dependencies
         if: matrix.stack != 'hotwire'
