@@ -20,6 +20,9 @@ jobs:
     name: Test Stubs - Rails - ${{ matrix.stack }}
 
     steps:
+      - name: Install native packages
+        run: apt-get update && apt-get install -y build-essential
+
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
