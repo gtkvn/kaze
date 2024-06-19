@@ -1,7 +1,7 @@
-import { AxiosInstance } from 'axios';
+import { AxiosInstance } from 'axios'
 
 declare global {
-    interface Window {
-        axios: AxiosInstance;
-    }
+  interface Window {
+    axios: AxiosInstance
+  }
 }
