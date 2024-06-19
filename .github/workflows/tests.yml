@@ -16,14 +16,12 @@ jobs:
       fail-fast: true
       matrix:
         stack: [hotwire, react, vue]
+        rails: [7.1, 7.2]
 
-    name: Test Stubs - Rails - ${{ matrix.stack }}
+    name: Test Stubs - Rails ${{ matrix.rails }} - ${{ matrix.stack }}
 
     steps:
-      # - name: Install native packages
-      #   run: sudo apt-get update && sudo apt-get install -yqq build-essential libgmp-dev ruby-dev
-
-      - name: Setup Ruby and install gems
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3.0
@@ -31,7 +29,7 @@ jobs:
 
       - name: Setup Rails
         run: |
-          gem install rails
+          gem install rails -v ${{ matrix.rails }}
           rails new .
           bundle add bcrypt
 
