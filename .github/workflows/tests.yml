@@ -27,13 +27,14 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3.0
-          # bundler-cache: true
+          bundler-cache: true
 
       - name: Setup Rails
         run: |
           gem install bundler
           gem install rails
           rails new .
+          bundle add bcrypt
 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -43,7 +44,6 @@ jobs:
       - name: Install Kaze
         run: |
           bundle add kaze --path ./kaze
-          bundle install
           bundle exec kaze install ${{ matrix.stack }}
 
       - name: Install NPM dependencies
