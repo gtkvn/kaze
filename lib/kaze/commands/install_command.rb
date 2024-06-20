@@ -11,17 +11,11 @@ class Kaze::Commands::InstallCommand < Thor
   def install(stack = 'hotwire')
     return say 'Kaze must be run in a new Rails application.', :red unless File.exist?("#{Dir.pwd}/bin/rails")
 
-    if stack == 'hotwire'
-      return install_hotwire_stack
-    end
+    return install_hotwire_stack if stack == 'hotwire'
 
-    if stack == 'react'
-      return install_inertia_react_stack
-    end
+    return install_inertia_react_stack if stack == 'react'
 
-    if stack == 'vue'
-      return install_inertia_vue_stack
-    end
+    return install_inertia_vue_stack if stack == 'vue'
 
     say 'Invalid stack. Supported stacks are [hotwire], [react], [vue].', :red
   end
@@ -53,11 +47,12 @@ class Kaze::Commands::InstallCommand < Thor
   end
 
   def install_migrations
-    ensure_directory_exists("#{Dir.pwd}/db/migrate")
-    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/db/migrate", "#{Dir.pwd}/db/migrate")
     stdin, _ = Open3.capture3("#{Dir.pwd}/bin/rails version")
     versions = stdin.gsub!('Rails ', '').split('.')
     railsVersion = [ versions[0], versions[1] ].join('.')
+
+    ensure_directory_exists("#{Dir.pwd}/db/migrate")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/db/migrate", "#{Dir.pwd}/db/migrate")
     Dir.children("#{Dir.pwd}/db/migrate").each do |file|
       path = "#{Dir.pwd}/db/migrate/#{file}"
       File.write(path, File.read(path).gsub!(/ActiveRecord::Migration$/, "ActiveRecord::Migration[#{railsVersion}]"))
@@ -79,12 +74,12 @@ class Kaze::Commands::InstallCommand < Thor
   def run_command(command)
     Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
       stdout_thread = Thread.new do
-        while (line = stdout.gets) do
+        while line = stdout.gets do
           say line
         end
       end
       stderr_thread = Thread.new do
-        while (line = stderr.gets) do
+        while line = stderr.gets do
           say line, :red
         end
       end

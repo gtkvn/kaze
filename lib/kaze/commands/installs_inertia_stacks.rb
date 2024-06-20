@@ -60,7 +60,7 @@ module Kaze::Commands::InstallsInertiaStacks
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/bin/dev", "#{Dir.pwd}/bin/dev")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/bin/vite", "#{Dir.pwd}/bin/vite")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
-    File.write("#{Dir.pwd}/Procfile.dev", "#{File.read("#{Dir.pwd}/Procfile.dev")}\nvite: bundle exec rake js:routes:typescript && bin/vite dev\n")
+    File.write("#{Dir.pwd}/Procfile.dev", "#{File.read("#{Dir.pwd}/Procfile.dev")}\nvite: bin/vite dev\n")
     run_command("#{Dir.pwd}/bin/rails generate js_routes:middleware")
     run_command("#{Dir.pwd}/bin/rails tailwindcss:build")
 
@@ -140,7 +140,7 @@ module Kaze::Commands::InstallsInertiaStacks
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/bin/dev", "#{Dir.pwd}/bin/dev")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/inertia-common/bin/vite", "#{Dir.pwd}/bin/vite")
     FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
-    File.write("#{Dir.pwd}/Procfile.dev", "#{File.read("#{Dir.pwd}/Procfile.dev")}\nvite: bundle exec rake js:routes:typescript && bin/vite dev\n")
+    File.write("#{Dir.pwd}/Procfile.dev", "#{File.read("#{Dir.pwd}/Procfile.dev")}\nvite: bin/vite dev\n")
     run_command("#{Dir.pwd}/bin/rails generate js_routes:middleware")
     run_command("#{Dir.pwd}/bin/rails tailwindcss:build")
 
