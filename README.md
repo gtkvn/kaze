@@ -32,7 +32,7 @@ cd kaze-example-app
 
 Once the project has been created, you may scaffold your application using one of the Kaze "stacks" discussed in the documentation below.
 
-### Kaze and Hotwire
+## Kaze and Hotwire
 
 The default Kaze "stack" is the Hotwire stack. Hotwire is a powerful way to building dynamic, reactive, front-end UIs primarily using Ruby and ERB templates without using much JavaScript by sending HTML instead of JSON over the wire.
 
