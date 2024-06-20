@@ -1,8 +1,6 @@
 <p align="center"><img src="/art/logo.svg" alt="Logo Kaze"></p>
 
-# Kaze
-
-Heavily inspired by [Laravel Breeze](https://github.com/laravel/breeze), this gem offers authentication and application starter kits to give you a head start building your new Rails application. These kits automatically scaffold your application with the routes, controllers, and views you need to register and authenticate your application's users.
+Heavily inspired by [Laravel Breeze](https://github.com/laravel/breeze), this gem offers authentication and application starter kits to give you a head start building your new [Rails](https://rubyonrails.org) application. These kits automatically scaffold your application with the routes, controllers, and views you need to register and authenticate your application's users.
 
 [Kaze](https://github.com/gtkvn/kaze) is a opinionated minimal, simple implementation of all authentication features that a modern web application should have, including login, registration, password reset, email verification. In addition, Kaze includes a simple "profile" page where the user may update their name, email address, and password.
 
@@ -10,13 +8,13 @@ Kaze provides scaffolding options based on [Hotwire](https://hotwired.dev) or [I
 
 ## Installation
 
-Before creating your first project powered by Kaze, make sure that your local machine has Ruby and [Rails](https://rubyonrails.org) installed. Ruby can be installed in minutes via [mise](https://mise.jdx.dev).
+Before creating your first project powered by Kaze, make sure that your local machine has Ruby installed. Ruby can be installed in minutes via [mise](https://mise.jdx.dev).
 
 ```
 mise use -g ruby@3.3
 ```
 
-After you have installed Ruby, you may install Rails and Kaze globally:
+After you have installed Ruby, you may install `rails` and `kaze` gems globally:
 
 ```
 gem install rails
