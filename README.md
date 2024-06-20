@@ -1,5 +1,7 @@
 <p align="center"><img src="/art/logo.svg" alt="Logo Kaze"></p>
 
+# Kaze
+
 Heavily inspired by [Laravel Breeze](https://github.com/laravel/breeze), this gem offers authentication and application starter kits to give you a head start building your new [Rails](https://rubyonrails.org) application. These kits automatically scaffold your application with the routes, controllers, and views you need to register and authenticate your application's users.
 
 [Kaze](https://github.com/gtkvn/kaze) is a opinionated minimal, simple implementation of all authentication features that a modern web application should have, including login, registration, password reset, email verification. In addition, Kaze includes a simple "profile" page where the user may update their name, email address, and password.
