@@ -54,8 +54,7 @@ class Kaze::Commands::InstallCommand < Thor
     ensure_directory_exists("#{Dir.pwd}/db/migrate")
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/db/migrate", "#{Dir.pwd}/db/migrate")
     Dir.children("#{Dir.pwd}/db/migrate").each do |file|
-      path = "#{Dir.pwd}/db/migrate/#{file}"
-      File.write(path, File.read(path).gsub!(/ActiveRecord::Migration$/, "ActiveRecord::Migration[#{railsVersion}]"))
+      replace_in_file(/ActiveRecord::Migration$/, "ActiveRecord::Migration[#{railsVersion}]", "#{Dir.pwd}/db/migrate/#{file}")
     end
   end
 
@@ -69,6 +68,10 @@ class Kaze::Commands::InstallCommand < Thor
 
   def ensure_directory_exists(path)
     FileUtils.mkdir_p(path) unless File.directory?(path)
+  end
+
+  def replace_in_file(search, replace, path)
+    File.write(path, File.read(path).gsub!(search, replace))
   end
 
   def run_command(command)
