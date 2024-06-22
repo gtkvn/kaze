@@ -8,7 +8,7 @@ class ModalComponent < ViewComponent::Base
       lg: 'sm:max-w-lg',
       xl: 'sm:max-w-xl',
       '2xl': 'sm:max-w-2xl'
-    }[attributes[:max_width] || '2xl']
+    }[(attributes[:max_width] || '2xl').to_sym]
     @attributes = attributes.without(:name, :show, :max_width)
   end
 end
