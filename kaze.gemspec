@@ -10,6 +10,7 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
   spec.files = Dir["lib/**/*", "stubs/**/*", "MIT-LICENSE", "README.md"]
   spec.executables = %w[ kaze ]
+  spec.required_ruby_version = ">= 3.1.0"
 
   spec.add_dependency "thor", "~> 1.2"
   spec.add_dependency "zeitwerk", "~> 2.5"
