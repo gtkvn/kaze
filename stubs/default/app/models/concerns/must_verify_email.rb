@@ -1,6 +1,4 @@
 module MustVerifyEmail
-  extend ActiveSupport::Concern
-
   def has_verified_email?
     !email_verified_at.nil?
   end
