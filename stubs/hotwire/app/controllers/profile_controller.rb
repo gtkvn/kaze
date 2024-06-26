@@ -22,7 +22,7 @@ class ProfileController < ApplicationController
   def destroy
     @delete_user_form = DeleteUserForm.new(params.permit(:password))
 
-    return render partial: 'profile/partials/delete_user_form', status: :unprocessable_entity if @delete_user_form.invalid?
+    return render turbo_stream: turbo_stream.replace('confirm_user_deletion_modal', partial: 'profile/partials/confirm_user_deletion_modal'), status: :unprocessable_entity if @delete_user_form.invalid?
 
     user = Current.auth.user
 
