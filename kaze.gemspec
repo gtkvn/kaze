@@ -6,14 +6,14 @@ Gem::Specification.new do |spec|
   spec.authors = [ "Cuong Giang" ]
   spec.email = [ "thaicuong.giang@gmail.com" ]
   spec.homepage = "https://github.com/gtkvn/kaze"
-  spec.summary = "Minimal Rails authentication scaffolding with Hotwire, Vue, or React + Tailwind."
+  spec.summary = "Opinionated minimal Rails authentication scaffolding with Hotwire, React, or Vue + Tailwind."
   spec.license = "MIT"
-  spec.files = Dir["lib/**/*", "stubs/**/*", "MIT-LICENSE", "README.md"]
+  spec.files = Dir["lib/**/*", "stubs/**/*", "LICENSE.md", "README.md"]
   spec.executables = %w[ kaze ]
   spec.required_ruby_version = ">= 3.1.0"
 
-  spec.add_dependency "thor", "~> 1.2"
-  spec.add_dependency "zeitwerk", "~> 2.5"
+  spec.add_dependency "thor", "~> 1.3"
+  spec.add_dependency "zeitwerk", "~> 2.6"
 
   spec.add_development_dependency "railties"
 end
