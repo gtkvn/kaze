@@ -3,7 +3,7 @@
 require "kaze"
 
 begin
-  Kaze::Commands::InstallCommand.start(ARGV)
+  Kaze::Commands::App.start(ARGV)
 rescue => e
   puts "  \e[31mERROR (#{e.class}): #{e.message}\e[0m"
   puts e.backtrace if ENV["VERBOSE"]

@@ -1,25 +1,4 @@
-require 'bundler'
-require 'fileutils'
-require 'open3'
-require 'thor'
-
-class Kaze::Commands::InstallCommand < Thor
-  include Kaze::Commands::InstallsHotwireStack
-  include Kaze::Commands::InstallsInertiaStacks
-
-  desc 'install [STACK]', 'Install the Kaze controllers and resources. Supported stacks: hotwire, react, vue.'
-  def install(stack = 'hotwire')
-    return say 'Kaze must be run in a new Rails application.', :red unless File.exist?("#{Dir.pwd}/bin/rails")
-
-    return install_hotwire_stack if stack == 'hotwire'
-
-    return install_inertia_react_stack if stack == 'react'
-
-    return install_inertia_vue_stack if stack == 'vue'
-
-    say 'Invalid stack. Supported stacks are [hotwire], [react], [vue].', :red
-  end
-
+module Kaze::Commands::Utils
   private
 
   def install_gems(gems = [], group = nil)
