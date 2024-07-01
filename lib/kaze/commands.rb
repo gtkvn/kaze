@@ -15,9 +15,11 @@ module Kaze::Commands
     def install(stack = 'hotwire')
       return say 'Kaze must be run in a new Rails application.', :red unless File.exist?("#{Dir.pwd}/bin/rails")
 
-      return say "Invalid stack. Supported stacks are #{available_stacks.keys.map { |k| "[#{k}]" }.join(', ')}.", :red unless available_stacks.key?(stack.to_sym)
+      name = "install_#{available_stacks[stack.to_sym]}_stack"
 
-      send("install_#{available_stacks[stack.to_sym]}_stack")
+      return send(name) if respond_to?(name, true)
+
+      say "Invalid stack. Supported stacks are #{available_stacks.keys.map { |k| "[#{k}]" }.join(', ')}.", :red
     end
 
     desc 'version', 'Show Kaze version'

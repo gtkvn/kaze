@@ -32,9 +32,7 @@ module Kaze::Commands::Utils
 
     ensure_directory_exists("#{Dir.pwd}/db/migrate")
     FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/db/migrate", "#{Dir.pwd}/db/migrate")
-    Dir.children("#{Dir.pwd}/db/migrate").each do |file|
-      replace_in_file(/ActiveRecord::Migration$/, "ActiveRecord::Migration[#{railsVersion}]", "#{Dir.pwd}/db/migrate/#{file}")
-    end
+    Dir.children("#{Dir.pwd}/db/migrate").each { |file| replace_in_file(/ActiveRecord::Migration$/, "ActiveRecord::Migration[#{railsVersion}]", "#{Dir.pwd}/db/migrate/#{file}") }
   end
 
   def install_tests
