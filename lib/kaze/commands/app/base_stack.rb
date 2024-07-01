@@ -1,4 +1,8 @@
-module Kaze::Commands::Utils
+require 'bundler'
+require 'fileutils'
+require 'open3'
+
+class Kaze::Commands::App::BaseStack
   private
 
   def install_gems(gems = [], group = nil)
@@ -31,16 +35,16 @@ module Kaze::Commands::Utils
     railsVersion = [ versions[0], versions[1] ].join('.')
 
     ensure_directory_exists("#{Dir.pwd}/db/migrate")
-    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/db/migrate", "#{Dir.pwd}/db/migrate")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../../stubs/default/db/migrate", "#{Dir.pwd}/db/migrate")
     Dir.children("#{Dir.pwd}/db/migrate").each { |file| replace_in_file(/ActiveRecord::Migration$/, "ActiveRecord::Migration[#{railsVersion}]", "#{Dir.pwd}/db/migrate/#{file}") }
   end
 
   def install_tests
     ensure_directory_exists("#{Dir.pwd}/test/factories")
     ensure_directory_exists("#{Dir.pwd}/test/integration")
-    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../stubs/default/test/test_helper.rb", "#{Dir.pwd}/test/test_helper.rb")
-    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/test/factories", "#{Dir.pwd}/test/factories")
-    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../stubs/default/test/integration", "#{Dir.pwd}/test/integration")
+    FileUtils.copy_file("#{File.dirname(__FILE__)}/../../../../stubs/default/test/test_helper.rb", "#{Dir.pwd}/test/test_helper.rb")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../../stubs/default/test/factories", "#{Dir.pwd}/test/factories")
+    FileUtils.copy_entry("#{File.dirname(__FILE__)}/../../../../stubs/default/test/integration", "#{Dir.pwd}/test/integration")
   end
 
   def ensure_directory_exists(path)
@@ -71,5 +75,9 @@ module Kaze::Commands::Utils
 
   def run_commands(commands)
     commands.each { |command| run_command(command) }
+  end
+
+  def say(message, color = nil)
+    THOR.say(message, color)
   end
 end
