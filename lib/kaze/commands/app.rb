@@ -2,6 +2,12 @@ require 'thor'
 
 THOR = Thor.new
 
+AVAILABLE_STACKS = {
+  hotwire: 'hotwire',
+  react: 'inertia_react',
+  vue: 'inertia_vue'
+}
+
 class Kaze::Commands::App < Thor
   def self.exit_on_failure?() true end
 
