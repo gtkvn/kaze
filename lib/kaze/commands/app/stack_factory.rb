@@ -1,7 +1,13 @@
 class Kaze::Commands::App::StackFactory
   def self.make(stack)
-    raise Kaze::Commands::InvalidStackError unless AVAILABLE_STACKS.key?(stack)
+    available_stacks = {
+      hotwire: 'hotwire',
+      react: 'inertia_react',
+      vue: 'inertia_vue'
+    }
 
-    Object.const_get("Kaze::Commands::App::#{AVAILABLE_STACKS[stack].split(/_/).map(&:capitalize).join}Stack").new
+    raise Kaze::Commands::InvalidStackError, "Invalid stack. Supported stacks are #{available_stacks.keys.map { |k| "[#{k}]" }.join(', ')}." unless available_stacks.key?(stack)
+
+    Object.const_get("Kaze::Commands::App::#{available_stacks[stack].split(/_/).map(&:capitalize).join}Stack").new
   end
 end
