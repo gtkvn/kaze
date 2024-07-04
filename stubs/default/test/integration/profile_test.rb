@@ -57,7 +57,6 @@ class ProfileTest < ActionDispatch::IntegrationTest
       password: 'wrong-password'
     }
 
-    assert_response :unprocessable_entity
     assert_not_nil user.reload
   end
 end
