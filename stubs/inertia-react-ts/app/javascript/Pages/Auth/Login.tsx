@@ -1,4 +1,4 @@
-import { useEffect, FormEventHandler } from 'react'
+import { FormEventHandler } from 'react'
 import Checkbox from '@/Components/Checkbox'
 import GuestLayout from '@/Layouts/GuestLayout'
 import InputError from '@/Components/InputError'
@@ -15,16 +15,12 @@ export default function Login({ status }: { status?: string }) {
     remember: false,
   })
 
-  useEffect(() => {
-    return () => {
-      reset('password')
-    }
-  }, [])
-
   const submit: FormEventHandler = (e) => {
     e.preventDefault()
 
-    post(login_path())
+    post(login_path(), {
+      onFinish: () => reset('password'),
+    })
   }
 
   return (

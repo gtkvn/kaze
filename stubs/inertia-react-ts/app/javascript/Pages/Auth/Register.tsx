@@ -1,4 +1,4 @@
-import { useEffect, FormEventHandler } from 'react'
+import { FormEventHandler } from 'react'
 import GuestLayout from '@/Layouts/GuestLayout'
 import InputError from '@/Components/InputError'
 import InputLabel from '@/Components/InputLabel'
@@ -15,16 +15,12 @@ export default function Register() {
     password_confirmation: '',
   })
 
-  useEffect(() => {
-    return () => {
-      reset('password', 'password_confirmation')
-    }
-  }, [])
-
   const submit: FormEventHandler = (e) => {
     e.preventDefault()
 
-    post(register_path())
+    post(register_path(), {
+      onFinish: () => reset('password', 'password_confirmation'),
+    })
   }
 
   return (
