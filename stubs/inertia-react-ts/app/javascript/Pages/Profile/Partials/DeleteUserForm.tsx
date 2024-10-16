@@ -19,6 +19,7 @@ export default function DeleteUserForm({ className = '' }: { className?: string 
     processing,
     reset,
     errors,
+    clearErrors,
   } = useForm({
     password: '',
   })
@@ -41,6 +42,7 @@ export default function DeleteUserForm({ className = '' }: { className?: string 
   const closeModal = () => {
     setConfirmingUserDeletion(false)
 
+    clearErrors()
     reset()
   }
 
