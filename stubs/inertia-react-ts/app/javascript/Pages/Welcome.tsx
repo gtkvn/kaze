@@ -1,12 +1,13 @@
 import { dashboard_path, login_path, register_path } from '@/routes'
 import { PageProps } from '@/types'
-import { Head, Link } from '@inertiajs/react'
+import { Head, Link, usePage } from '@inertiajs/react'
 
 export default function Welcome({
-  auth,
   railsVersion,
   rubyVersion,
 }: PageProps<{ railsVersion: string; rubyVersion: string }>) {
+  const user = usePage().props.auth.user
+
   return (
     <>
       <Head title="Welcome" />
@@ -21,7 +22,7 @@ export default function Welcome({
       >
         <header className="absolute top-0 right-0 grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
           <div className="-mx-3 flex flex-1 justify-end">
-            {auth.user ? (
+            {user ? (
               <Link
                 href={dashboard_path()}
                 className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"

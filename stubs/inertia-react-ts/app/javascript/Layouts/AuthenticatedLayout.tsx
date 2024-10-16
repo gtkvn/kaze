@@ -3,15 +3,15 @@ import ApplicationLogo from '@/Components/ApplicationLogo'
 import Dropdown from '@/Components/Dropdown'
 import NavLink from '@/Components/NavLink'
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink'
-import { Link } from '@inertiajs/react'
-import { User } from '@/types'
+import { Link, usePage } from '@inertiajs/react'
 import { dashboard_path, logout_path, profile_edit_path } from '@/routes'
 
 export default function AuthenticatedLayout({
-  user,
   header,
   children,
-}: PropsWithChildren<{ user: User; header?: ReactNode }>) {
+}: PropsWithChildren<{ header?: ReactNode }>) {
+  const user = usePage().props.auth.user
+
   const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false)
 
   const { pathname = '' } = typeof window !== 'undefined' ? window.location : {}
