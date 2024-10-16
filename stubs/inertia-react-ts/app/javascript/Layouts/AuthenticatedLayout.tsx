@@ -7,7 +7,7 @@ import { Link } from '@inertiajs/react'
 import { User } from '@/types'
 import { dashboard_path, logout_path, profile_edit_path } from '@/routes'
 
-export default function Authenticated({
+export default function AuthenticatedLayout({
   user,
   header,
   children,
