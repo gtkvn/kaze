@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "@headlessui/react": "^2.0.4",
-    "@inertiajs/react": "^1.1.0",
+    "@inertiajs/react": "^2.0.0",
     "@tailwindcss/forms": "^0.5.7",
     "@types/node": "^18.13.0",
     "@types/react": "^18.0.28",
@@ -19,7 +19,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwindcss": "^3.2.1",
-    "typescript": "^5.0.2",
+    "typescript": "~5.5.3",
     "vite": "^5.2.11",
     "vite-plugin-rails": "^0.5.0"
   }
