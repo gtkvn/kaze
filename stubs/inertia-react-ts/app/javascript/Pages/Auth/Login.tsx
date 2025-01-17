@@ -12,7 +12,7 @@ export default function Login({ status }: { status?: string }) {
   const { data, setData, post, processing, errors, reset } = useForm({
     email: '',
     password: '',
-    remember: false,
+    remember: false as boolean,
   })
 
   const submit: FormEventHandler = (e) => {
