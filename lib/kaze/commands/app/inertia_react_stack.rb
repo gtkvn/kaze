@@ -58,7 +58,7 @@ class Kaze::Commands::App::InertiaReactStack < Kaze::Commands::App::BaseStack
     FileUtils.copy_file("#{stubs_path}/default/bin/dev", "#{Dir.pwd}/bin/dev")
     FileUtils.copy_file("#{stubs_path}/inertia-common/bin/vite", "#{Dir.pwd}/bin/vite")
     FileUtils.copy_file("#{stubs_path}/default/Procfile.dev", "#{Dir.pwd}/Procfile.dev")
-    File.write("#{Dir.pwd}/Procfile.dev", "#{File.read("#{Dir.pwd}/Procfile.dev")}\nvite: bin/vite dev\n")
+    replace_in_file('#vite: bin/vite dev', 'vite: bin/vite dev', "#{Dir.pwd}/Procfile.dev")
     run_command("#{Dir.pwd}/bin/rails generate js_routes:middleware")
     run_command("#{Dir.pwd}/bin/rails tailwindcss:build")
 
