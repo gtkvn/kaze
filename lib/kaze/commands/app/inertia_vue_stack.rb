@@ -2,7 +2,7 @@ class Kaze::Commands::App::InertiaVueStack < Kaze::Commands::App::BaseStack
   def install
     # Gems...
     return unless remove_gems([ 'sprockets-rails', 'turbo-rails', 'stimulus-rails' ])
-    return unless install_gems([ 'propshaft', 'tailwindcss-rails', 'inertia_rails', 'vite_rails', 'dotenv', 'bcrypt', 'js-routes' ])
+    return unless install_gems([ 'propshaft', 'tailwindcss-rails:~>3.0', 'inertia_rails', 'vite_rails', 'dotenv', 'bcrypt', 'js-routes' ])
     return unless install_gems([ 'factory_bot_rails', 'faker' ], 'development, test')
 
     # NPM Packages...
