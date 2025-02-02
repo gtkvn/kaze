@@ -16,7 +16,7 @@ class Kaze::Commands::App::BaseStack
 
     return true if gem_being_installed.empty?
 
-    status = run_command("bundle add #{gem_being_installed.join(" ")}#{group ? " --group \"#{group}\"" : ""}")
+    status = run_command("#{Dir.pwd}/bin/bundle add #{gem_being_installed.join(" ")}#{group ? " --group \"#{group}\"" : ""}")
 
     status.success?
   end
@@ -28,7 +28,7 @@ class Kaze::Commands::App::BaseStack
 
     return true if gems_being_removed.empty?
 
-    status = run_command("bundle remove #{gems_being_removed.join(" ")}")
+    status = run_command("#{Dir.pwd}/bin/bundle remove #{gems_being_removed.join(" ")}")
 
     status.success?
   end

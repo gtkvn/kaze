@@ -2,7 +2,8 @@ class Kaze::Commands::App::HotwireStack < Kaze::Commands::App::BaseStack
   def install
     # Gems...
     return unless remove_gems([ 'sprockets-rails', 'stimulus-rails' ])
-    return unless install_gems([ 'propshaft', 'view_component', 'tailwindcss-rails:~>3.0', 'turbo-rails', 'dotenv', 'bcrypt' ])
+    return unless install_gems([ 'propshaft', 'view_component', 'turbo-rails', 'dotenv', 'bcrypt' ])
+    run_command("#{Dir.pwd}/bin/bundle add tailwindcss-rails --version=\"~> 3.0\"")
     return unless install_gems([ 'hotwire-livereload' ], 'development')
     return unless install_gems([ 'factory_bot_rails', 'faker' ], 'development, test')
 
